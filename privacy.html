@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Privacy Policy for Bella Bohemia — how we collect, use, and protect your personal information in accordance with POPIA.">
+  <title>Privacy Policy | Bella Bohemia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    :root {
+      --cream: #FAF6F0;
+      --cream-dark: #F0E8DC;
+      --gold: #C8A87C;
+      --gold-dark: #A88962;
+      --charcoal: #2C2C2C;
+      --charcoal-light: #3D3D3D;
+      --sage: #8A9A7B;
+      --white: #FFFFFF;
+      --shadow: 0 8px 32px rgba(44, 44, 44, 0.08);
+      --shadow-lg: 0 16px 48px rgba(44, 44, 44, 0.12);
+      --radius: 16px;
+      --radius-pill: 50px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-h: 80px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 24px); }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.75; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.3; }
+
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--header-h); z-index: 1000;
+      display: flex; align-items: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.97) 0%, rgba(12,12,12,0.94) 100%);
+      border-bottom: 1px solid rgba(200, 168, 124, 0.12);
+    }
+    .header-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-mark {
+      display: block; border-radius: 50%; overflow: hidden; width: 54px; height: 54px;
+      box-shadow: 0 0 0 1px rgba(200,168,124,0.2), 0 4px 20px rgba(0,0,0,0.35);
+      transition: transform var(--transition);
+    }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+    .header-logo:hover .logo-mark { transform: scale(1.06); }
+    .back-link {
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(250,246,240,0.82); transition: color var(--transition);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    .legal-hero {
+      position: relative; min-height: 320px; display: flex; align-items: flex-end;
+      padding: calc(var(--header-h) + 48px) 24px 56px; overflow: hidden;
+    }
+    .legal-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('images/packages-bg.jpg');
+      background-image: image-set(url('images/packages-bg.webp') type('image/webp'), url('images/packages-bg.jpg') type('image/jpeg'));
+      background-size: cover; background-position: center;
+    }
+    .legal-hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(44,44,44,0.78) 100%);
+    }
+    .legal-hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .legal-hero .badge {
+      display: inline-block; padding: 6px 18px; border-radius: var(--radius-pill);
+      background: rgba(200,168,124,0.2); border: 1px solid rgba(200,168,124,0.35);
+      color: var(--gold); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .legal-hero h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--cream); margin-bottom: 12px; }
+    .legal-hero p { color: rgba(250,246,240,0.8); max-width: 580px; font-weight: 300; }
+    .legal-hero .updated { margin-top: 16px; font-size: 0.85rem; color: var(--gold); }
+
+    .botanical { position: absolute; opacity: 0.12; pointer-events: none; z-index: 2; }
+    .botanical svg { width: 100%; height: 100%; }
+    .botanical path { fill: none; stroke: var(--gold); stroke-width: 1.2; }
+
+    .legal-body { padding: 64px 24px 100px; position: relative; }
+    .legal-body::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .legal-layout {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start;
+    }
+    .legal-toc {
+      position: sticky; top: calc(var(--header-h) + 24px);
+      background: var(--white); border-radius: var(--radius); padding: 28px 24px;
+      box-shadow: var(--shadow); border: 1px solid rgba(200,168,124,0.15);
+    }
+    .legal-toc h3 {
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark);
+      margin-bottom: 16px;
+    }
+    .legal-toc a {
+      display: block; padding: 8px 0; font-size: 0.88rem; color: var(--charcoal-light);
+      border-bottom: 1px solid rgba(200,168,124,0.1); transition: color var(--transition), padding-left var(--transition);
+    }
+    .legal-toc a:last-child { border-bottom: none; }
+    .legal-toc a:hover { color: var(--gold-dark); padding-left: 6px; }
+
+    .legal-card {
+      background: var(--white); border-radius: var(--radius); padding: 48px 52px;
+      box-shadow: var(--shadow-lg); border: 1px solid rgba(200,168,124,0.12);
+      position: relative; overflow: hidden;
+    }
+    .legal-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--sage), var(--gold-dark));
+    }
+    .legal-card .intro {
+      font-size: 1.05rem; color: var(--charcoal-light); margin-bottom: 40px;
+      padding-bottom: 32px; border-bottom: 1px solid var(--cream-dark);
+    }
+    .legal-section { margin-bottom: 36px; scroll-margin-top: calc(var(--header-h) + 24px); }
+    .legal-section h2 {
+      font-size: 1.35rem; color: var(--charcoal); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .legal-section h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(138,154,123,0.15); color: var(--sage);
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+    }
+    .legal-section p, .legal-section li { font-size: 0.95rem; color: var(--charcoal-light); margin-bottom: 12px; }
+    .legal-section ul { list-style: disc; padding-left: 22px; margin-bottom: 12px; }
+    .legal-section li { margin-bottom: 8px; }
+    .highlight-box {
+      background: var(--cream); border-left: 4px solid var(--sage);
+      padding: 18px 22px; border-radius: 0 10px 10px 0; margin: 16px 0;
+    }
+    .highlight-box p { margin-bottom: 0; }
+    .data-table {
+      width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem;
+    }
+    .data-table th, .data-table td {
+      padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--cream-dark);
+    }
+    .data-table th {
+      background: var(--cream); font-weight: 600; color: var(--charcoal);
+      font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .data-table td { color: var(--charcoal-light); }
+
+    .footer {
+      background: linear-gradient(180deg, #000 0%, #0a0a0a 40%, #111 100%);
+      color: var(--cream); padding: 48px 24px 28px; border-top: 1px solid rgba(200,168,124,0.15);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .footer .logo-mark { width: 64px; height: 64px; margin: 0 auto 16px; }
+    .footer p { font-size: 0.85rem; color: rgba(250,246,240,0.5); }
+    .footer a { color: var(--gold); transition: color var(--transition); }
+    .footer a:hover { color: var(--cream); }
+
+    @media (max-width: 900px) {
+      .legal-layout { grid-template-columns: 1fr; }
+      .legal-toc { position: static; }
+      .legal-card { padding: 32px 24px; }
+      .data-table { font-size: 0.82rem; }
+      .data-table th, .data-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Bella Bohemia — Home">
+        <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia"></span>
+      </a>
+      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </header>
+
+  <section class="legal-hero">
+    <div class="legal-hero-bg" aria-hidden="true"></div>
+    <div class="legal-hero-overlay" aria-hidden="true"></div>
+    <div class="botanical" style="bottom:20%;left:5%;width:90px;height:130px;">
+      <svg viewBox="0 0 100 140" fill="none"><path d="M50 140 C50 100 20 80 10 40 C30 60 50 50 50 20 C50 50 70 60 90 40 C80 80 50 100 50 140Z"/><path d="M50 80 C35 70 25 50 20 30"/></svg>
+    </div>
+    <div class="legal-hero-content">
+      <span class="badge"><i class="fas fa-shield-halved"></i> Your Privacy</span>
+      <h1>Privacy Policy</h1>
+      <p>We respect your privacy and are committed to protecting your personal information in accordance with the Protection of Personal Information Act (POPIA).</p>
+      <p class="updated"><i class="far fa-calendar"></i> Last updated: 23 June 2026</p>
+    </div>
+  </section>
+
+  <main class="legal-body">
+    <div class="legal-layout">
+      <nav class="legal-toc" aria-label="Table of contents">
+        <h3>Contents</h3>
+        <a href="#overview">Overview</a>
+        <a href="#responsible-party">Responsible Party</a>
+        <a href="#data-collected">Information We Collect</a>
+        <a href="#how-we-use">How We Use Your Data</a>
+        <a href="#legal-basis">Legal Basis</a>
+        <a href="#sharing">Sharing &amp; Disclosure</a>
+        <a href="#retention">Data Retention</a>
+        <a href="#security">Security</a>
+        <a href="#your-rights">Your Rights (POPIA)</a>
+        <a href="#cookies">Cookies &amp; Website</a>
+        <a href="#children">Children</a>
+        <a href="#changes">Policy Changes</a>
+        <a href="#contact">Contact Us</a>
+      </nav>
+
+      <article class="legal-card">
+        <p class="intro"><strong>Bella Bohemia</strong> ("we", "us", "our") is committed to safeguarding the personal information of our guests, website visitors, and enquiry contacts. This Privacy Policy explains what information we collect, why we collect it, how we use and protect it, and your rights under the <strong>Protection of Personal Information Act, 2013 (POPIA)</strong> of South Africa.</p>
+
+        <section class="legal-section" id="overview">
+          <h2><span class="num">1</span> Overview</h2>
+          <p>This policy applies to personal information collected through:</p>
+          <ul>
+            <li>Our website (including the quote request form and PDF quotation feature)</li>
+            <li>Email correspondence at welcome@bellabohemia.co.za</li>
+            <li>WhatsApp and telephone communications</li>
+            <li>In-person visits, bookings, treatments, and overnight stays</li>
+          </ul>
+          <p>By using our website or services, you acknowledge that you have read and understood this Privacy Policy. Where consent is required, we will obtain it separately and clearly.</p>
+        </section>
+
+        <section class="legal-section" id="responsible-party">
+          <h2><span class="num">2</span> Responsible Party</h2>
+          <p>Under POPIA, the responsible party for your personal information is:</p>
+          <div class="highlight-box">
+            <p><strong>Bella Bohemia</strong> (Est. 2018)<br>
+            Email: <a href="mailto:welcome@bellabohemia.co.za" style="color:var(--gold-dark);">welcome@bellabohemia.co.za</a><br>
+            Information Officer enquiries: same contact address above</p>
+          </div>
+        </section>
+
+        <section class="legal-section" id="data-collected">
+          <h2><span class="num">3</span> Information We Collect</h2>
+          <p>We only collect personal information that is adequate, relevant, and limited to what is necessary for our spa services and communications. This may include:</p>
+          <table class="data-table">
+            <thead>
+              <tr><th>Category</th><th>Examples</th><th>Source</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Contact details</td>
+                <td>Full name, email address, phone number</td>
+                <td>Quote form, email, WhatsApp, bookings</td>
+              </tr>
+              <tr>
+                <td>Booking information</td>
+                <td>Package selected, preferred dates, group size, special requests</td>
+                <td>Forms, correspondence</td>
+              </tr>
+              <tr>
+                <td>Health &amp; wellness</td>
+                <td>Allergies, medical conditions, pregnancy, treatment preferences</td>
+                <td>Pre-treatment consultation (voluntary disclosure)</td>
+              </tr>
+              <tr>
+                <td>Dietary requirements</td>
+                <td>Food allergies or restrictions for dinner/breakfast</td>
+                <td>Overnight package bookings</td>
+              </tr>
+              <tr>
+                <td>Technical data</td>
+                <td>Browser type, device, approximate location (via server logs)</td>
+                <td>Website hosting (minimal)</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>We do not intentionally collect payment card details through our static website. Payment arrangements are handled separately and securely as communicated at booking.</p>
+        </section>
+
+        <section class="legal-section" id="how-we-use">
+          <h2><span class="num">4</span> How We Use Your Information</h2>
+          <p>We use your personal information for the following purposes:</p>
+          <ul>
+            <li>Processing enquiries, quote requests, and booking confirmations</li>
+            <li>Delivering spa treatments, day packages, and overnight hospitality services</li>
+            <li>Communicating with you about appointments, changes, and follow-up</li>
+            <li>Ensuring guest safety during treatments (health disclosures)</li>
+            <li>Generating client-side PDF quotations from form data you enter (processed locally in your browser; not stored on our servers)</li>
+            <li>Improving our services and responding to complaints</li>
+            <li>Complying with legal and regulatory obligations</li>
+          </ul>
+          <div class="highlight-box">
+            <p>We will not use your personal information for direct marketing without your explicit consent. You may withdraw marketing consent at any time by contacting us.</p>
+          </div>
+        </section>
+
+        <section class="legal-section" id="legal-basis">
+          <h2><span class="num">5</span> Legal Basis for Processing</h2>
+          <p>We process personal information on one or more of the following lawful grounds under POPIA:</p>
+          <ul>
+            <li><strong>Consent</strong> — e.g. when you submit a quote form or agree to marketing</li>
+            <li><strong>Contract</strong> — to fulfil a booking or service agreement with you</li>
+            <li><strong>Legitimate interest</strong> — to operate our business safely and respond to enquiries, balanced against your rights</li>
+            <li><strong>Legal obligation</strong> — where required by applicable South African law</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="sharing">
+          <h2><span class="num">6</span> Sharing &amp; Disclosure</h2>
+          <p>We do not sell your personal information. We may share information only in these limited circumstances:</p>
+          <ul>
+            <li><strong>Service providers</strong> — trusted third parties who assist with hosting, email, or payment processing, bound by confidentiality obligations</li>
+            <li><strong>Legal requirements</strong> — when required by law, court order, or government authority</li>
+            <li><strong>Business protection</strong> — to protect the rights, safety, and property of Bella Bohemia, our guests, or others</li>
+          </ul>
+          <p>Where information is transferred outside South Africa, we ensure appropriate safeguards are in place as required by POPIA.</p>
+        </section>
+
+        <section class="legal-section" id="retention">
+          <h2><span class="num">7</span> Data Retention</h2>
+          <p>We retain personal information only for as long as necessary to fulfil the purposes for which it was collected, including:</p>
+          <ul>
+            <li><strong>Booking records:</strong> up to 5 years after your last visit (for service history and dispute resolution)</li>
+            <li><strong>Enquiry data:</strong> up to 12 months if no booking is made, unless you request earlier deletion</li>
+            <li><strong>Health disclosures:</strong> for the duration of your treatment relationship and a reasonable period thereafter</li>
+            <li><strong>Legal/financial records:</strong> as required by applicable tax and accounting laws</li>
+          </ul>
+          <p>When information is no longer needed, we securely delete or anonymise it.</p>
+        </section>
+
+        <section class="legal-section" id="security">
+          <h2><span class="num">8</span> Security Measures</h2>
+          <p>We implement appropriate technical and organisational measures to protect your personal information against unauthorised access, loss, misuse, or alteration. These include secure communication channels, access controls, and staff confidentiality training.</p>
+          <p>Our website is a static site with no server-side database. Quote form submissions are sent via your email client (mailto) or processed locally for PDF generation — we do not store form submissions on the website itself. However, information you send via email or WhatsApp is handled according to this policy once received.</p>
+          <p>No method of transmission over the internet is 100% secure. While we strive to protect your data, we cannot guarantee absolute security.</p>
+        </section>
+
+        <section class="legal-section" id="your-rights">
+          <h2><span class="num">9</span> Your Rights Under POPIA</h2>
+          <p>As a data subject in South Africa, you have the right to:</p>
+          <ul>
+            <li><strong>Access</strong> — request confirmation of whether we hold your personal information and obtain a copy</li>
+            <li><strong>Correction</strong> — request correction of inaccurate or incomplete information</li>
+            <li><strong>Deletion</strong> — request deletion where we no longer have a lawful reason to retain it</li>
+            <li><strong>Objection</strong> — object to processing based on legitimate interests or direct marketing</li>
+            <li><strong>Restriction</strong> — request restriction of processing in certain circumstances</li>
+            <li><strong>Complaint</strong> — lodge a complaint with the Information Regulator (South Africa)</li>
+          </ul>
+          <div class="highlight-box">
+            <p>To exercise any of these rights, email <a href="mailto:welcome@bellabohemia.co.za" style="color:var(--gold-dark);">welcome@bellabohemia.co.za</a>. We will respond within a reasonable period as required by POPIA (generally within 30 days).</p>
+          </div>
+          <p><strong>Information Regulator (South Africa):</strong><br>
+          Website: <a href="https://www.justice.gov.za/inforeg/" target="_blank" rel="noopener noreferrer" style="color:var(--gold-dark);">www.justice.gov.za/inforeg</a></p>
+        </section>
+
+        <section class="legal-section" id="cookies">
+          <h2><span class="num">10</span> Cookies &amp; Website Analytics</h2>
+          <p>Our static website does not use tracking cookies or third-party analytics by default. We may load external resources such as Google Fonts and Font Awesome from content delivery networks; those providers may collect technical data according to their own privacy policies.</p>
+          <p>If we introduce cookies or analytics in future, we will update this policy and, where required, obtain your consent before placing non-essential cookies.</p>
+        </section>
+
+        <section class="legal-section" id="children">
+          <h2><span class="num">11</span> Children's Privacy</h2>
+          <p>Our services are not directed at children under 16. We do not knowingly collect personal information from minors without parental or guardian consent. If you believe we have collected information from a child without proper consent, please contact us immediately so we can delete it.</p>
+        </section>
+
+        <section class="legal-section" id="changes">
+          <h2><span class="num">12</span> Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. The updated version will be posted on this page with a revised "Last updated" date. We encourage you to review this policy periodically.</p>
+        </section>
+
+        <section class="legal-section" id="contact">
+          <h2><span class="num">13</span> Contact Us</h2>
+          <p>For privacy-related questions, access requests, or complaints, please contact our Information Officer:</p>
+          <div class="highlight-box">
+            <p><strong>Bella Bohemia — Privacy Enquiries</strong><br>
+            Email: <a href="mailto:welcome@bellabohemia.co.za" style="color:var(--gold-dark);">welcome@bellabohemia.co.za</a><br>
+            Subject line: "Privacy Request — [Your Name]"</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia"></span>
+      <p>&copy; 2026 Bella Bohemia. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="terms.html">Terms &amp; Conditions</a></p>
+    </div>
+  </footer>
+</body>
+</html>

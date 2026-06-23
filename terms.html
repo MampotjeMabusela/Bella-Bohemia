@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terms and Conditions for Bella Bohemia luxury spa — bookings, packages, overnight stays, and guest policies.">
+  <title>Terms &amp; Conditions | Bella Bohemia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    :root {
+      --cream: #FAF6F0;
+      --cream-dark: #F0E8DC;
+      --gold: #C8A87C;
+      --gold-dark: #A88962;
+      --charcoal: #2C2C2C;
+      --charcoal-light: #3D3D3D;
+      --white: #FFFFFF;
+      --shadow: 0 8px 32px rgba(44, 44, 44, 0.08);
+      --shadow-lg: 0 16px 48px rgba(44, 44, 44, 0.12);
+      --radius: 16px;
+      --radius-pill: 50px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-h: 80px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 24px); }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.75; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; line-height: 1.3; }
+
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--header-h); z-index: 1000;
+      display: flex; align-items: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.97) 0%, rgba(12,12,12,0.94) 100%);
+      border-bottom: 1px solid rgba(200, 168, 124, 0.12);
+    }
+    .header-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo-mark {
+      display: block; border-radius: 50%; overflow: hidden; width: 54px; height: 54px;
+      box-shadow: 0 0 0 1px rgba(200,168,124,0.2), 0 4px 20px rgba(0,0,0,0.35);
+      transition: transform var(--transition);
+    }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+    .header-logo:hover .logo-mark { transform: scale(1.06); }
+    .back-link {
+      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(250,246,240,0.82); transition: color var(--transition);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    .legal-hero {
+      position: relative; min-height: 320px; display: flex; align-items: flex-end;
+      padding: calc(var(--header-h) + 48px) 24px 56px; overflow: hidden;
+    }
+    .legal-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('images/quote-bg.jpg');
+      background-image: image-set(url('images/quote-bg.webp') type('image/webp'), url('images/quote-bg.jpg') type('image/jpeg'));
+      background-size: cover; background-position: center 55%;
+    }
+    .legal-hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(44,44,44,0.75) 100%);
+    }
+    .legal-hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .legal-hero .badge {
+      display: inline-block; padding: 6px 18px; border-radius: var(--radius-pill);
+      background: rgba(200,168,124,0.2); border: 1px solid rgba(200,168,124,0.35);
+      color: var(--gold); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .legal-hero h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--cream); margin-bottom: 12px; }
+    .legal-hero p { color: rgba(250,246,240,0.8); max-width: 560px; font-weight: 300; }
+    .legal-hero .updated { margin-top: 16px; font-size: 0.85rem; color: var(--gold); }
+
+    .botanical { position: absolute; opacity: 0.12; pointer-events: none; z-index: 2; }
+    .botanical svg { width: 100%; height: 100%; }
+    .botanical path { fill: none; stroke: var(--gold); stroke-width: 1.2; }
+
+    .legal-body { padding: 64px 24px 100px; position: relative; }
+    .legal-body::before {
+      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .legal-layout {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: start;
+    }
+    .legal-toc {
+      position: sticky; top: calc(var(--header-h) + 24px);
+      background: var(--white); border-radius: var(--radius); padding: 28px 24px;
+      box-shadow: var(--shadow); border: 1px solid rgba(200,168,124,0.15);
+    }
+    .legal-toc h3 {
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark);
+      margin-bottom: 16px;
+    }
+    .legal-toc a {
+      display: block; padding: 8px 0; font-size: 0.88rem; color: var(--charcoal-light);
+      border-bottom: 1px solid rgba(200,168,124,0.1); transition: color var(--transition), padding-left var(--transition);
+    }
+    .legal-toc a:last-child { border-bottom: none; }
+    .legal-toc a:hover { color: var(--gold-dark); padding-left: 6px; }
+
+    .legal-card {
+      background: var(--white); border-radius: var(--radius); padding: 48px 52px;
+      box-shadow: var(--shadow-lg); border: 1px solid rgba(200,168,124,0.12);
+      position: relative; overflow: hidden;
+    }
+    .legal-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    }
+    .legal-card .intro {
+      font-size: 1.05rem; color: var(--charcoal-light); margin-bottom: 40px;
+      padding-bottom: 32px; border-bottom: 1px solid var(--cream-dark);
+    }
+    .legal-section { margin-bottom: 36px; scroll-margin-top: calc(var(--header-h) + 24px); }
+    .legal-section h2 {
+      font-size: 1.35rem; color: var(--charcoal); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .legal-section h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(200,168,124,0.15); color: var(--gold-dark);
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+    }
+    .legal-section p, .legal-section li { font-size: 0.95rem; color: var(--charcoal-light); margin-bottom: 12px; }
+    .legal-section ul { list-style: disc; padding-left: 22px; margin-bottom: 12px; }
+    .legal-section li { margin-bottom: 8px; }
+    .highlight-box {
+      background: var(--cream); border-left: 4px solid var(--gold);
+      padding: 18px 22px; border-radius: 0 10px 10px 0; margin: 16px 0;
+    }
+    .highlight-box p { margin-bottom: 0; }
+
+    .footer {
+      background: linear-gradient(180deg, #000 0%, #0a0a0a 40%, #111 100%);
+      color: var(--cream); padding: 48px 24px 28px; border-top: 1px solid rgba(200,168,124,0.15);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .footer .logo-mark { width: 64px; height: 64px; margin: 0 auto 16px; }
+    .footer p { font-size: 0.85rem; color: rgba(250,246,240,0.5); }
+    .footer a { color: var(--gold); transition: color var(--transition); }
+    .footer a:hover { color: var(--cream); }
+
+    @media (max-width: 900px) {
+      .legal-layout { grid-template-columns: 1fr; }
+      .legal-toc { position: static; }
+      .legal-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Bella Bohemia — Home">
+        <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia"></span>
+      </a>
+      <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </div>
+  </header>
+
+  <section class="legal-hero">
+    <div class="legal-hero-bg" aria-hidden="true"></div>
+    <div class="legal-hero-overlay" aria-hidden="true"></div>
+    <div class="botanical" style="top:18%;right:6%;width:100px;height:140px;">
+      <svg viewBox="0 0 100 140" fill="none"><path d="M50 140 C50 100 20 80 10 40 C30 60 50 50 50 20 C50 50 70 60 90 40 C80 80 50 100 50 140Z"/></svg>
+    </div>
+    <div class="legal-hero-content">
+      <span class="badge"><i class="fas fa-scale-balanced"></i> Legal</span>
+      <h1>Terms &amp; Conditions</h1>
+      <p>Please read these terms carefully before booking any treatment, package, or overnight stay at Bella Bohemia.</p>
+      <p class="updated"><i class="far fa-calendar"></i> Last updated: 23 June 2026</p>
+    </div>
+  </section>
+
+  <main class="legal-body">
+    <div class="legal-layout">
+      <nav class="legal-toc" aria-label="Table of contents">
+        <h3>Contents</h3>
+        <a href="#introduction">Introduction</a>
+        <a href="#bookings">Bookings &amp; Enquiries</a>
+        <a href="#packages">Packages &amp; Pricing</a>
+        <a href="#health">Health &amp; Safety</a>
+        <a href="#overnight">Overnight Stays</a>
+        <a href="#cancellations">Cancellations &amp; Refunds</a>
+        <a href="#conduct">Guest Conduct</a>
+        <a href="#liability">Liability</a>
+        <a href="#law">Governing Law</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <article class="legal-card">
+        <p class="intro">These Terms and Conditions ("Terms") govern your use of the Bella Bohemia website and all spa services, day packages, and overnight retreats offered by <strong>Bella Bohemia</strong> ("we", "us", "our"), established 2018. By making a booking or using our services, you agree to these Terms.</p>
+
+        <section class="legal-section" id="introduction">
+          <h2><span class="num">1</span> Introduction</h2>
+          <p>Bella Bohemia is a luxury wellness spa offering massage therapies, combo treatment days, and friends overnight spa packages in South Africa. These Terms apply to all guests, including individuals and groups booking on behalf of others.</p>
+          <p>We reserve the right to update these Terms at any time. The version published on our website at the time of your booking shall apply. Material changes will be reflected in the "Last updated" date above.</p>
+        </section>
+
+        <section class="legal-section" id="bookings">
+          <h2><span class="num">2</span> Bookings &amp; Enquiries</h2>
+          <p>Bookings and enquiries may be made via email at <a href="mailto:welcome@bellabohemia.co.za" style="color:var(--gold-dark);">welcome@bellabohemia.co.za</a>, WhatsApp, or our online quote request form. A booking is only confirmed once you receive written confirmation from Bella Bohemia and, where applicable, payment or deposit arrangements have been agreed.</p>
+          <ul>
+            <li>All bookings are subject to availability.</li>
+            <li>You must provide accurate contact details and disclose any relevant health information before your visit.</li>
+            <li>We may refuse or cancel a booking if false information is provided or if we reasonably believe a guest poses a risk to themselves, other guests, or our staff.</li>
+            <li>Guests under 18 must be accompanied by a parent or legal guardian and may require parental consent for certain treatments.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="packages">
+          <h2><span class="num">3</span> Packages, Pricing &amp; Payment</h2>
+          <p>Current packages and pricing are displayed on our website and promotional materials, including but not limited to:</p>
+          <ul>
+            <li><strong>Spa Tranquil Treat Days</strong> (Monday–Thursday): 90-minute combo (R500 per guest / R950 per couple) and 60-minute combo (R400 per guest / R750 per couple).</li>
+            <li><strong>Friends Overnight Spa Package</strong>: tiered per-person pricing based on group size (R1,400–R1,700 per friend), inclusive of welcome drink, one-hour full body massage, 2-course dinner, one-night stay, and full English breakfast.</li>
+            <li>Optional add-ons such as hot stone therapy (R100) are charged separately unless stated otherwise.</li>
+          </ul>
+          <div class="highlight-box">
+            <p>Prices are quoted in South African Rand (ZAR) and are subject to change without prior notice. The price confirmed in your booking confirmation letter or email is the price that applies to your reservation.</p>
+          </div>
+          <p>Payment terms (deposit, balance due date, and accepted methods) will be communicated at the time of booking confirmation. Failure to pay by the agreed date may result in cancellation of your reservation.</p>
+        </section>
+
+        <section class="legal-section" id="health">
+          <h2><span class="num">4</span> Health, Safety &amp; Treatment Disclaimer</h2>
+          <p>Spa treatments are intended for relaxation and general wellness. They do not constitute medical advice, diagnosis, or treatment. You must inform us before your appointment of any medical conditions, allergies, injuries, pregnancy, or medications that may affect your treatment.</p>
+          <ul>
+            <li>We reserve the right to modify, shorten, or decline a treatment if we believe it may be unsafe or unsuitable.</li>
+            <li>Guests with contagious illnesses, open wounds, severe skin conditions, or recent surgery may be asked to reschedule.</li>
+            <li>Consumption of alcohol before certain treatments is discouraged. Bella Bohemia is not liable for adverse reactions resulting from undisclosed health information.</li>
+            <li>Welcome drinks are complimentary unless otherwise stated; dietary requirements should be communicated in advance for dinner and breakfast inclusions.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="overnight">
+          <h2><span class="num">5</span> Overnight Stay Terms</h2>
+          <p>The Friends Overnight Spa Package includes check-in from <strong>14:00</strong> and check-out by <strong>10:00</strong> the following day, unless otherwise agreed in writing.</p>
+          <ul>
+            <li>Group sizes must be confirmed at booking. Pricing tiers apply to the final confirmed number of guests.</li>
+            <li>Rooms and facilities are shared according to the package arrangement communicated at booking.</li>
+            <li>Guests are responsible for their personal belongings. Bella Bohemia is not liable for loss or damage to valuables left unattended.</li>
+            <li>Quiet hours and house rules apply to ensure all guests enjoy a restful experience. Excessive noise, smoking in non-designated areas, or disruptive behaviour may result in removal without refund.</li>
+            <li>Damage to property caused by a guest or their party may be charged for repair or replacement.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section" id="cancellations">
+          <h2><span class="num">6</span> Cancellations, Rescheduling &amp; Refunds</h2>
+          <p>We understand plans change. Our cancellation policy is as follows unless a different arrangement is stated in your booking confirmation:</p>
+          <ul>
+            <li><strong>More than 7 days before arrival:</strong> Full refund of any deposit paid, or free rescheduling subject to availability.</li>
+            <li><strong>3–7 days before arrival:</strong> 50% of the total booking value may be retained; balance refundable or credit offered toward a future visit within 6 months.</li>
+            <li><strong>Less than 3 days before arrival or no-show:</strong> No refund. The full booking value may be charged.</li>
+            <li><strong>Day packages (Tranquil Treat Days):</strong> Cancellations with less than 48 hours' notice may forfeit any deposit or prepayment.</li>
+          </ul>
+          <p>Rescheduling requests must be made in writing via email or WhatsApp. We will make reasonable efforts to accommodate changes but cannot guarantee availability on preferred dates.</p>
+          <p>In exceptional circumstances (force majeure, government restrictions, or operational closure), Bella Bohemia may offer rescheduling or credit in lieu of a cash refund at our discretion.</p>
+        </section>
+
+        <section class="legal-section" id="conduct">
+          <h2><span class="num">7</span> Guest Conduct &amp; Website Use</h2>
+          <p>We are committed to providing a safe, respectful, and inclusive environment. Harassment of staff or other guests, intoxication, illegal activity, or misuse of facilities will not be tolerated.</p>
+          <p>Our website is provided for information and lead generation. You may not use it for unlawful purposes, attempt to gain unauthorised access to our systems, or reproduce our content without written permission.</p>
+        </section>
+
+        <section class="legal-section" id="liability">
+          <h2><span class="num">8</span> Limitation of Liability</h2>
+          <p>To the fullest extent permitted by South African law, Bella Bohemia's liability for any claim arising from our services shall be limited to the amount paid for the specific booking in question.</p>
+          <p>We are not liable for indirect, consequential, or special damages including loss of enjoyment, loss of profits, or travel costs. Nothing in these Terms excludes liability that cannot be excluded by law, including liability for death or personal injury caused by our negligence.</p>
+        </section>
+
+        <section class="legal-section" id="law">
+          <h2><span class="num">9</span> Governing Law &amp; Disputes</h2>
+          <p>These Terms are governed by the laws of the Republic of South Africa. Any dispute arising from these Terms or our services shall first be addressed through good-faith negotiation. If unresolved, disputes shall be subject to the jurisdiction of the competent courts of South Africa.</p>
+        </section>
+
+        <section class="legal-section" id="contact">
+          <h2><span class="num">10</span> Contact Us</h2>
+          <p>For questions about these Terms, bookings, or complaints, please contact:</p>
+          <div class="highlight-box">
+            <p><strong>Bella Bohemia</strong><br>
+            Email: <a href="mailto:welcome@bellabohemia.co.za" style="color:var(--gold-dark);">welcome@bellabohemia.co.za</a><br>
+            WhatsApp: +27 72 000 0000 (placeholder)</p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia"></span>
+      <p>&copy; 2026 Bella Bohemia. All rights reserved. &nbsp;|&nbsp; <a href="index.html">Home</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bella Bohemia — Luxury spa retreats, tranquil treat days, and friends overnight packages in South Africa.">
+  <title>Bella Bohemia | Luxury Spa Retreat</title>
+
+  <link rel="preload" as="image" href="images/hero-bg.webp" type="image/webp">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    /* ─── CSS Variables ─── */
+    :root {
+      --cream: #FAF6F0;
+      --cream-dark: #F0E8DC;
+      --gold: #C8A87C;
+      --gold-dark: #A88962;
+      --charcoal: #2C2C2C;
+      --charcoal-light: #3D3D3D;
+      --sage: #8A9A7B;
+      --sage-light: #B5C4A8;
+      --sage-dark: #5C6B52;
+      --white: #FFFFFF;
+      --shadow: 0 8px 32px rgba(44, 44, 44, 0.08);
+      --shadow-lg: 0 16px 48px rgba(44, 44, 44, 0.12);
+      --radius: 16px;
+      --radius-pill: 50px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-h: 80px;
+    }
+
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    /* ─── Particle Canvas ─── */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ─── Floating Geometric Shapes ─── */
+    .geo-shapes {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .geo-shape {
+      position: absolute;
+      border: 1px solid rgba(200, 168, 124, 0.25);
+      opacity: 0.4;
+    }
+    .geo-shape.circle {
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,124,0.08) 0%, transparent 70%);
+    }
+    .geo-shape.diamond {
+      transform: rotate(45deg);
+      background: rgba(200, 168, 124, 0.04);
+    }
+    .geo-shape.ring {
+      border-radius: 50%;
+      background: transparent;
+      border-width: 1.5px;
+    }
+
+    @keyframes float-drift-1 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(30px, -40px) rotate(5deg); }
+      50% { transform: translate(-20px, -80px) rotate(-3deg); }
+      75% { transform: translate(40px, -50px) rotate(8deg); }
+    }
+    @keyframes float-drift-2 {
+      0%, 100% { transform: translate(0, 0) rotate(45deg); }
+      33% { transform: translate(-50px, 30px) rotate(50deg); }
+      66% { transform: translate(30px, -60px) rotate(40deg); }
+    }
+    @keyframes float-drift-3 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(60px, 40px); }
+    }
+
+  /* ─── Botanical Decorations ─── */
+    .botanical {
+      position: absolute;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .botanical svg { width: 100%; height: 100%; }
+    .botanical path, .botanical line {
+      fill: none;
+      stroke: var(--gold-dark);
+      stroke-width: 1.2;
+      stroke-linecap: round;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-h);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.97) 0%, rgba(12, 12, 12, 0.94) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 168, 124, 0.12);
+      transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .header.scrolled {
+      background: rgba(0, 0, 0, 0.98);
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
+      border-bottom-color: rgba(200, 168, 124, 0.22);
+    }
+    .header-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-mark {
+      display: block;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: transparent;
+      box-shadow:
+        0 0 0 1px rgba(200, 168, 124, 0.2),
+        0 4px 20px rgba(0, 0, 0, 0.35);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .logo-mark img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .header-logo .logo-mark {
+      width: 54px;
+      height: 54px;
+    }
+    .header-logo:hover .logo-mark {
+      transform: scale(1.06);
+      box-shadow:
+        0 0 0 2px rgba(200, 168, 124, 0.35),
+        0 6px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-desktop a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 246, 240, 0.82);
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-desktop a:hover { color: var(--gold); }
+    .nav-desktop a:hover::after { width: 100%; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--cream);
+      transition: var(--transition);
+      transform-origin: center;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(250, 246, 240, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .nav-mobile.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .nav-mobile a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      transition: color var(--transition);
+    }
+    .nav-mobile a:hover { color: var(--gold-dark); }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: var(--radius-pill);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .btn:hover::before { opacity: 1; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(200, 168, 124, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(200, 168, 124, 0.45);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      border: 1.5px solid var(--gold);
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-3px);
+    }
+    .btn-whatsapp {
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe57;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.4);
+    }
+    .btn-dark {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+    .btn-dark:hover {
+      background: var(--charcoal-light);
+      transform: translateY(-3px);
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 2;
+    }
+    section { position: relative; z-index: 2; }
+
+    /* ─── Section Background Images ─── */
+    .section-bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: translateZ(0);
+    }
+    @media (min-width: 769px) {
+      .section-bg-layer.parallax { background-attachment: fixed; }
+    }
+    .section-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .section > .container,
+    .section > .botanical,
+    .gallery-strip .container { position: relative; z-index: 2; }
+
+    /* ─── Gallery Strip ─── */
+    .gallery-strip {
+      position: relative;
+      z-index: 2;
+      padding: 48px 0;
+      background: var(--charcoal);
+      overflow: hidden;
+    }
+    .gallery-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.4) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .gallery-circles {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: clamp(20px, 4vw, 48px);
+      flex-wrap: wrap;
+    }
+    .gallery-circle {
+      width: clamp(140px, 22vw, 220px);
+      height: clamp(140px, 22vw, 220px);
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 3px rgba(200, 168, 124, 0.35),
+        0 12px 40px rgba(0, 0, 0, 0.45);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .gallery-circle:hover {
+      transform: scale(1.06) translateY(-6px);
+      box-shadow:
+        0 0 0 4px rgba(200, 168, 124, 0.5),
+        0 20px 50px rgba(0, 0, 0, 0.55);
+    }
+    .gallery-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-caption {
+      text-align: center;
+      margin-top: 28px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(250, 246, 240, 0.75);
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── Scroll Animations ─── */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-up.delay-1 { transition-delay: 0.1s; }
+    .fade-in-up.delay-2 { transition-delay: 0.2s; }
+    .fade-in-up.delay-3 { transition-delay: 0.3s; }
+    .fade-in-up.delay-4 { transition-delay: 0.4s; }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--header-h) + 40px) 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .section-bg-layer {
+      background-image: url('images/hero-bg.jpg');
+      background-image: image-set(url('images/hero-bg.webp') type('image/webp'), url('images/hero-bg.jpg') type('image/jpeg'));
+      background-position: center 30%;
+    }
+    .hero .section-overlay {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(44, 44, 44, 0.55) 40%, rgba(0, 0, 0, 0.7) 100%),
+        radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.35) 100%);
+    }
+    .hero-content { max-width: 720px; position: relative; z-index: 2; }
+    .hero-logo-wrap {
+      margin: 0 auto 32px;
+      width: 180px;
+      height: 180px;
+      animation: hero-float 4s ease-in-out infinite;
+    }
+    @keyframes hero-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    .hero-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 32px rgba(44, 44, 44, 0.15));
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: var(--radius-pill);
+      background: rgba(200, 168, 124, 0.22);
+      backdrop-filter: blur(8px);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      border: 1px solid rgba(200, 168, 124, 0.3);
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      color: var(--cream);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(250, 246, 240, 0.88);
+      max-width: 540px;
+      margin: 0 auto 36px;
+      font-weight: 300;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+    }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 28px;
+    }
+
+    /* ─── Section Shared ─── */
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 60px;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      color: var(--charcoal-light);
+      font-weight: 300;
+    }
+
+    /* ─── Packages Section ─── */
+    .packages-section {
+      overflow: hidden;
+    }
+    .packages-section .section-bg-layer {
+      background-image: url('images/packages-bg.jpg');
+      background-image: image-set(url('images/packages-bg.webp') type('image/webp'), url('images/packages-bg.jpg') type('image/jpeg'));
+      background-position: center center;
+    }
+    .packages-section .section-overlay {
+      background: linear-gradient(180deg, rgba(250, 246, 240, 0.94) 0%, rgba(245, 237, 227, 0.9) 50%, rgba(250, 246, 240, 0.93) 100%);
+    }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .package-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(200, 168, 124, 0.12);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .package-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .package-card:hover::before { transform: scaleX(1); }
+
+    .package-duration {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .package-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      color: var(--charcoal);
+    }
+    .price-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .price-pill {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--cream);
+      border-radius: var(--radius-pill);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      border: 1px solid rgba(200, 168, 124, 0.2);
+      width: fit-content;
+    }
+    .price-pill span {
+      color: var(--gold-dark);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+    .package-includes h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+    }
+    .package-includes ul li {
+      padding: 6px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 0.92rem;
+      color: var(--charcoal-light);
+    }
+    .package-includes ul li::before {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.75rem;
+    }
+    .package-card .btn { margin-top: 28px; width: 100%; }
+
+    .special-banner {
+      margin-top: 48px;
+      text-align: center;
+      padding: 28px 36px;
+      background: linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-light) 100%);
+      border-radius: var(--radius);
+      color: var(--cream);
+    }
+    .special-banner p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .special-banner .email-link {
+      color: var(--gold);
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    .special-banner .email-link:hover { color: var(--cream); }
+
+    /* ─── Overnight Section ─── */
+    .overnight-section {
+      overflow: hidden;
+    }
+    .overnight-section .section-bg-layer {
+      background-image: url('images/overnight-bg.jpg');
+      background-image: image-set(url('images/overnight-bg.webp') type('image/webp'), url('images/overnight-bg.jpg') type('image/jpeg'));
+      background-position: center 40%;
+    }
+    .overnight-section .section-overlay {
+      background: linear-gradient(180deg, rgba(232, 237, 228, 0.92) 0%, rgba(212, 221, 208, 0.88) 50%, rgba(250, 246, 240, 0.9) 100%);
+    }
+    .overnight-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .overnight-info {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 44px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(138, 154, 123, 0.2);
+    }
+    .overnight-info h3 {
+      font-size: 1.6rem;
+      color: var(--sage-dark);
+      margin-bottom: 24px;
+    }
+    .overnight-includes li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      border-bottom: 1px solid rgba(138, 154, 123, 0.12);
+      font-size: 0.95rem;
+    }
+    .overnight-includes li:last-child { border-bottom: none; }
+    .overnight-includes li::before {
+      content: '\f5bb';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: var(--sage);
+      font-size: 0.85rem;
+    }
+    .overnight-includes .addon {
+      font-size: 0.82rem;
+      color: var(--gold-dark);
+      font-style: italic;
+      margin-top: 4px;
+      display: block;
+    }
+    .check-times {
+      display: flex;
+      gap: 24px;
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(138, 154, 123, 0.2);
+    }
+    .check-time {
+      flex: 1;
+      text-align: center;
+      padding: 16px;
+      background: rgba(138, 154, 123, 0.1);
+      border-radius: 12px;
+    }
+    .check-time .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      margin-bottom: 4px;
+    }
+    .check-time .time {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+    }
+
+    .pricing-tiers {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pricing-tier {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 28px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--sage);
+      transition: all var(--transition);
+    }
+    .pricing-tier:hover {
+      transform: translateX(8px);
+      border-left-color: var(--gold);
+      box-shadow: var(--shadow-lg);
+    }
+    .pricing-tier .friends {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--charcoal);
+    }
+    .pricing-tier .friends small {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--charcoal-light);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .pricing-tier .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold-dark);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .pricing-tier .price small {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--charcoal-light);
+    }
+
+    .overnight-cta {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    /* ─── Quote Section ─── */
+    .quote-section {
+      overflow: hidden;
+    }
+    .quote-section .section-bg-layer {
+      background-image: url('images/quote-bg.jpg');
+      background-image: image-set(url('images/quote-bg.webp') type('image/webp'), url('images/quote-bg.jpg') type('image/jpeg'));
+      background-position: center 60%;
+    }
+    .quote-section .section-overlay {
+      background: linear-gradient(135deg, rgba(250, 246, 240, 0.93) 0%, rgba(240, 232, 220, 0.9) 50%, rgba(250, 246, 240, 0.92) 100%);
+    }
+    .quote-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .quote-info h3 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .quote-info p {
+      color: var(--charcoal-light);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: all var(--transition);
+    }
+    .contact-card:hover {
+      transform: translateX(6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .contact-card .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-card .icon.gold { background: rgba(200,168,124,0.15); color: var(--gold-dark); }
+    .contact-card .icon.green { background: rgba(37,211,102,0.12); color: #25D366; }
+    .contact-card .icon.dark { background: rgba(44,44,44,0.08); color: var(--charcoal); }
+    .contact-card .text .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+    }
+    .contact-card .text .value {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .quote-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 44px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(200, 168, 124, 0.12);
+    }
+    .quote-form-wrap h3 {
+      font-size: 1.4rem;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid rgba(200, 168, 124, 0.25);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+      background: var(--cream);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200, 168, 124, 0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .form-actions .btn { flex: 1; min-width: 180px; }
+
+    /* ─── Footer ─── */
+    .footer {
+      background: linear-gradient(180deg, #000000 0%, #0a0a0a 40%, #111111 100%);
+      color: var(--cream);
+      padding: 64px 0 32px;
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(200, 168, 124, 0.15);
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(420px, 60%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 168, 124, 0.45), transparent);
+      pointer-events: none;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo-mark {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 20px;
+      box-shadow:
+        0 0 0 1px rgba(200, 168, 124, 0.18),
+        0 8px 32px rgba(0, 0, 0, 0.55);
+    }
+    .footer-brand:hover .logo-mark {
+      box-shadow:
+        0 0 0 2px rgba(200, 168, 124, 0.3),
+        0 10px 36px rgba(0, 0, 0, 0.6);
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: rgba(250, 246, 240, 0.65);
+      font-weight: 300;
+      max-width: 280px;
+    }
+    .footer h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(250, 246, 240, 0.7);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-social {
+      display: flex;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .footer-social a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(200, 168, 124, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1rem;
+      transition: all var(--transition);
+    }
+    .footer-social a:hover {
+      background: var(--gold);
+      color: var(--charcoal);
+      border-color: var(--gold);
+      transform: translateY(-3px);
+    }
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(250, 246, 240, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(250, 246, 240, 0.45);
+    }
+    .footer-bottom .est {
+      font-size: 0.75rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 968px) {
+      .packages-grid { grid-template-columns: 1fr; }
+      .overnight-layout { grid-template-columns: 1fr; }
+      .quote-layout { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      :root { --header-h: 70px; }
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+      .nav-mobile { display: flex; }
+      .section { padding: 72px 0; }
+      .package-card, .overnight-info, .quote-form-wrap { padding: 28px 24px; }
+      .check-times { flex-direction: column; gap: 12px; }
+      .pricing-tier { flex-direction: column; text-align: center; gap: 8px; }
+      .pricing-tier:hover { transform: translateY(-4px); }
+      .form-actions { flex-direction: column; }
+      .form-actions .btn { width: 100%; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Floating Geometric Shapes -->
+  <div class="geo-shapes" aria-hidden="true">
+    <div class="geo-shape circle" style="width:120px;height:120px;top:15%;left:8%;animation:float-drift-1 22s ease-in-out infinite;"></div>
+    <div class="geo-shape diamond" style="width:60px;height:60px;top:60%;left:85%;animation:float-drift-2 18s ease-in-out infinite;"></div>
+    <div class="geo-shape ring" style="width:200px;height:200px;top:40%;left:75%;animation:float-drift-3 25s ease-in-out infinite;"></div>
+    <div class="geo-shape circle" style="width:80px;height:80px;top:75%;left:12%;animation:float-drift-2 20s ease-in-out infinite reverse;"></div>
+    <div class="geo-shape ring" style="width:140px;height:140px;top:8%;left:70%;animation:float-drift-1 28s ease-in-out infinite reverse;"></div>
+    <div class="geo-shape diamond" style="width:40px;height:40px;top:30%;left:5%;animation:float-drift-3 16s ease-in-out infinite;"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#home" class="header-logo" aria-label="Bella Bohemia — Home">
+        <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia Logo"></span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="#home">Home</a>
+        <a href="#packages">Packages</a>
+        <a href="#overnight">Overnight</a>
+        <a href="#quote">Get Quote</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="nav-mobile" id="nav-mobile">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#packages" class="mobile-link">Packages</a>
+    <a href="#overnight" class="mobile-link">Overnight</a>
+    <a href="#quote" class="mobile-link">Get Quote</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="section-bg-layer parallax" aria-hidden="true"></div>
+    <div class="section-overlay" aria-hidden="true"></div>
+    <div class="botanical" style="top:12%;right:5%;width:120px;height:160px;opacity:0.08;">
+      <svg viewBox="0 0 100 140" fill="none"><path d="M50 140 C50 100 20 80 10 40 C30 60 50 50 50 20 C50 50 70 60 90 40 C80 80 50 100 50 140Z"/><path d="M50 80 C35 70 25 50 20 30"/><path d="M50 80 C65 70 75 50 80 30"/></svg>
+    </div>
+    <div class="botanical" style="bottom:15%;left:4%;width:100px;height:140px;transform:scaleX(-1);opacity:0.08;">
+      <svg viewBox="0 0 100 140" fill="none"><path d="M50 140 C50 100 20 80 10 40 C30 60 50 50 50 20 C50 50 70 60 90 40 C80 80 50 100 50 140Z"/><path d="M50 80 C35 70 25 50 20 30"/><path d="M50 80 C65 70 75 50 80 30"/></svg>
+    </div>
+    <div class="container hero-content">
+      <div class="hero-logo-wrap fade-in-up">
+        <img src="logo.png" alt="Bella Bohemia">
+      </div>
+      <div class="hero-badge fade-in-up delay-1">Est. 2018 &middot; Luxury Wellness</div>
+      <div class="hero-divider fade-in-up delay-1"></div>
+      <h1 class="fade-in-up delay-2">Where <em>Tranquility</em> Meets Bohemian Elegance</h1>
+      <p class="fade-in-up delay-2">Escape to Bella Bohemia — an oasis of restorative treatments, soulful hospitality, and unforgettable overnight retreats crafted for you and your closest friends.</p>
+      <div class="hero-cta fade-in-up delay-3">
+        <a href="#packages" class="btn btn-primary">Explore Packages</a>
+        <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi Bella Bohemia! I'd love to learn more about your spa packages.">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visual Gallery Strip -->
+  <section class="gallery-strip" aria-label="Spa atmosphere gallery">
+    <div class="container">
+      <div class="gallery-circles fade-in-up">
+        <div class="gallery-circle">
+          <picture>
+            <source srcset="images/gallery-massage.webp" type="image/webp">
+            <img src="images/gallery-massage.jpg" alt="Relaxing head massage treatment" loading="lazy" width="220" height="220">
+          </picture>
+        </div>
+        <div class="gallery-circle">
+          <picture>
+            <source srcset="images/gallery-zen.webp" type="image/webp">
+            <img src="images/gallery-zen.jpg" alt="Zen stones, orchid and candlelit tranquility" loading="lazy" width="220" height="220">
+          </picture>
+        </div>
+        <div class="gallery-circle">
+          <picture>
+            <source srcset="images/gallery-lavender.webp" type="image/webp">
+            <img src="images/gallery-lavender.jpg" alt="Lavender aromatherapy massage table" loading="lazy" width="220" height="220">
+          </picture>
+        </div>
+        <div class="gallery-circle">
+          <picture>
+            <source srcset="images/gallery-candles.webp" type="image/webp">
+            <img src="images/gallery-candles.jpg" alt="Warm candlelit spa ambiance" loading="lazy" width="220" height="220">
+          </picture>
+        </div>
+      </div>
+      <p class="gallery-caption fade-in-up delay-1">A glimpse into the Bella Bohemia experience</p>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section class="section packages-section" id="packages">
+    <div class="section-bg-layer parallax" aria-hidden="true"></div>
+    <div class="section-overlay" aria-hidden="true"></div>
+    <div class="botanical" style="top:8%;left:3%;width:90px;height:130px;">
+      <svg viewBox="0 0 100 140" fill="none"><path d="M50 140 C50 100 20 80 10 40 C30 60 50 50 50 20 C50 50 70 60 90 40 C80 80 50 100 50 140Z"/></svg>
+    </div>
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Monday – Thursday Special</span>
+        <h2>Spa Tranquil Treat Days</h2>
+        <p>Indulge in our signature combo massages — a harmonious blend of full-body relaxation and rejuvenating foot &amp; calf therapy, paired with a welcome drink.</p>
+      </div>
+
+      <div class="packages-grid">
+        <!-- 90 MIN -->
+        <div class="package-card fade-in-up delay-1">
+          <div class="package-duration"><i class="far fa-clock"></i> 90 MIN COMBO</div>
+          <h3>Ultimate Relaxation</h3>
+          <div class="price-pills">
+            <div class="price-pill"><span>R500</span> per guest</div>
+            <div class="price-pill"><span>R950</span> per couple</div>
+          </div>
+          <div class="package-includes">
+            <h4>Combo Massage Includes</h4>
+            <ul>
+              <li>Welcome Drink</li>
+              <li>Full Body Massage</li>
+              <li>Foot &amp; Calf Massage</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary" data-whatsapp data-message="Hi! I'd like to book the 90 MIN COMBO Spa Tranquil Treat Day (R500 per guest / R950 per couple).">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </a>
+        </div>
+
+        <!-- 60 MIN -->
+        <div class="package-card fade-in-up delay-2">
+          <div class="package-duration"><i class="far fa-clock"></i> 60 MIN COMBO</div>
+          <h3>Essential Bliss</h3>
+          <div class="price-pills">
+            <div class="price-pill"><span>R400</span> per guest</div>
+            <div class="price-pill"><span>R750</span> per couple</div>
+          </div>
+          <div class="package-includes">
+            <h4>Combo Massage Includes</h4>
+            <ul>
+              <li>Welcome Drink</li>
+              <li>Full Body Massage</li>
+              <li>Foot &amp; Calf Massage</li>
+            </ul>
+          </div>
+          <a href="#" class="btn btn-primary" data-whatsapp data-message="Hi! I'd like to book the 60 MIN COMBO Spa Tranquil Treat Day (R400 per guest / R750 per couple).">
+            <i class="fab fa-whatsapp"></i> Book Now
+          </a>
+        </div>
+      </div>
+
+      <div class="special-banner fade-in-up delay-3">
+        <p>Available Monday through Thursday &mdash; book your tranquil escape today</p>
+        <a href="mailto:welcome@bellabohemia.co.za" class="email-link">
+          <i class="fas fa-envelope"></i> welcome@bellabohemia.co.za
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overnight -->
+  <section class="section overnight-section" id="overnight">
+    <div class="section-bg-layer parallax" aria-hidden="true"></div>
+    <div class="section-overlay" aria-hidden="true"></div>
+    <div class="botanical" style="bottom:10%;right:4%;width:110px;height:150px;">
+      <svg viewBox="0 0 100 140" fill="none"><path d="M50 140 C50 100 20 80 10 40 C30 60 50 50 50 20 C50 50 70 60 90 40 C80 80 50 100 50 140Z"/><path d="M50 80 C35 70 25 50 20 30"/></svg>
+    </div>
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Group Retreat</span>
+        <h2>Friends Overnight Spa Package</h2>
+        <p>Gather your dearest friends for an unforgettable night of pampering, fine dining, and restful sleep in our serene sanctuary.</p>
+      </div>
+
+      <div class="overnight-layout">
+        <div class="overnight-info fade-in-up delay-1">
+          <h3>What's Included</h3>
+          <ul class="overnight-includes">
+            <li>Welcome drink</li>
+            <li>Full body massage (1 hour)
+              <span class="addon">Hot stones add-on optional &mdash; R100</span>
+            </li>
+            <li>2-course dinner</li>
+            <li>1-night comfortable stay</li>
+            <li>Full English breakfast</li>
+          </ul>
+          <div class="check-times">
+            <div class="check-time">
+              <div class="label">Check-in</div>
+              <div class="time">14:00</div>
+            </div>
+            <div class="check-time">
+              <div class="label">Check-out</div>
+              <div class="time">10:00</div>
+              <small style="font-size:0.7rem;color:var(--charcoal-light);">the following day</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-tiers fade-in-up delay-2">
+          <div class="pricing-tier">
+            <div class="friends">1 – 2 Friends<small>Intimate getaway</small></div>
+            <div class="price">R1,700 <small>per friend</small></div>
+          </div>
+          <div class="pricing-tier">
+            <div class="friends">3 – 5 Friends<small>Small group bliss</small></div>
+            <div class="price">R1,600 <small>per friend</small></div>
+          </div>
+          <div class="pricing-tier">
+            <div class="friends">6 – 8 Friends<small>Celebration retreat</small></div>
+            <div class="price">R1,500 <small>per friend</small></div>
+          </div>
+          <div class="pricing-tier">
+            <div class="friends">9 – 12 Friends<small>Grand gathering</small></div>
+            <div class="price">R1,400 <small>per friend</small></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="overnight-cta fade-in-up delay-3">
+        <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi! I'm interested in the Friends Overnight Spa Package. Could you help me with availability and pricing for my group?">
+          <i class="fab fa-whatsapp"></i> Book Overnight Package
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="section quote-section" id="quote">
+    <div class="section-bg-layer parallax" aria-hidden="true"></div>
+    <div class="section-overlay" aria-hidden="true"></div>
+    <div class="container">
+      <div class="quote-layout">
+        <div class="quote-info fade-in-up">
+          <span class="section-label">Get in Touch</span>
+          <h3>Request a Personalised Quote</h3>
+          <p>Tell us about your dream spa experience and we'll prepare a tailored quotation. Reach out directly or fill in the form — we're here to make magic happen.</p>
+          <div class="contact-cards">
+            <a href="mailto:welcome@bellabohemia.co.za" class="contact-card">
+              <div class="icon gold"><i class="fas fa-envelope"></i></div>
+              <div class="text">
+                <div class="label">Email</div>
+                <div class="value">welcome@bellabohemia.co.za</div>
+              </div>
+            </a>
+            <a href="#" class="contact-card" data-whatsapp data-message="Hi Bella Bohemia! I'd like to chat about your spa packages.">
+              <div class="icon green"><i class="fab fa-whatsapp"></i></div>
+              <div class="text">
+                <div class="label">WhatsApp</div>
+                <div class="value">+27 72 000 0000 <small style="color:var(--charcoal-light);font-size:0.75rem;"> (placeholder)</small></div>
+              </div>
+            </a>
+            <a href="tel:+27720000000" class="contact-card">
+              <div class="icon dark"><i class="fas fa-phone"></i></div>
+              <div class="text">
+                <div class="label">Phone</div>
+                <div class="value">+27 72 000 0000</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="quote-form-wrap fade-in-up delay-2">
+          <h3>Request a Quote</h3>
+          <form id="quote-form" novalidate>
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+27 ..." required>
+            </div>
+            <div class="form-group">
+              <label for="package">Package Interest</label>
+              <select id="package" name="package" required>
+                <option value="" disabled selected>Select a package</option>
+                <option value="90 MIN COMBO — Spa Tranquil Treat Day (R500 guest / R950 couple)">90 MIN COMBO — Spa Tranquil Treat Day</option>
+                <option value="60 MIN COMBO — Spa Tranquil Treat Day (R400 guest / R750 couple)">60 MIN COMBO — Spa Tranquil Treat Day</option>
+                <option value="Friends Overnight Spa Package (1–2 friends: R1,700 pp)">Friends Overnight — 1–2 friends (R1,700 pp)</option>
+                <option value="Friends Overnight Spa Package (3–5 friends: R1,600 pp)">Friends Overnight — 3–5 friends (R1,600 pp)</option>
+                <option value="Friends Overnight Spa Package (6–8 friends: R1,500 pp)">Friends Overnight — 6–8 friends (R1,500 pp)</option>
+                <option value="Friends Overnight Spa Package (9–12 friends: R1,400 pp)">Friends Overnight — 9–12 friends (R1,400 pp)</option>
+                <option value="Custom / Other">Custom / Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="requests">Special Requests</label>
+              <textarea id="requests" name="requests" placeholder="Dates, group size, add-ons, dietary requirements..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Send via Email
+              </button>
+              <button type="button" class="btn btn-outline" id="download-pdf-btn">
+                <i class="fas fa-file-pdf"></i> Download PDF Quote
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia"></span>
+          <p>A sanctuary of bohemian luxury where every treatment is an invitation to unwind, reconnect, and rediscover your inner glow.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#packages">Packages</a></li>
+            <li><a href="index.html#overnight">Overnight</a></li>
+            <li><a href="index.html#quote">Get Quote</a></li>
+            <li><a href="terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:welcome@bellabohemia.co.za"><i class="fas fa-envelope"></i> welcome@bellabohemia.co.za</a></li>
+            <li><a href="tel:+27720000000"><i class="fas fa-phone"></i> +27 72 000 0000</a></li>
+            <li><a href="#" data-whatsapp data-message="Hi Bella Bohemia!"><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
+          </ul>
+          <div class="footer-social">
+            <a href="#" data-whatsapp data-message="Hi Bella Bohemia!" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:welcome@bellabohemia.co.za" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+27720000000" aria-label="Phone"><i class="fas fa-phone"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Bella Bohemia. All rights reserved.</p>
+        <span class="est">EST. 2018</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── Configuration ─── */
+    const WHATSAPP_NUMBER = '27720000000'; // Placeholder — replace with real number
+    const BOOKING_EMAIL = 'welcome@bellabohemia.co.za';
+
+    /* ─── WhatsApp Links ─── */
+    document.querySelectorAll('[data-whatsapp]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        const msg = el.dataset.message || 'Hi Bella Bohemia!';
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+    });
+
+    /* ─── Header Scroll Effect ─── */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ─── Mobile Menu ─── */
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMobile.classList.toggle('open');
+      document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMobile.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ─── Scroll-triggered Fade-in-up ─── */
+    const fadeEls = document.querySelectorAll('.fade-in-up');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    fadeEls.forEach(el => observer.observe(el));
+
+    /* Trigger hero animations immediately */
+    document.querySelectorAll('.hero .fade-in-up').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 200);
+    });
+
+    /* ─── Gold Particle System ─── */
+    (function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let w, h;
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.size = Math.random() * 2.5 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.4;
+          this.speedY = (Math.random() - 0.5) * 0.4 - 0.15;
+          this.opacity = Math.random() * 0.5 + 0.1;
+          this.twinkle = Math.random() * Math.PI * 2;
+          this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          this.twinkle += this.twinkleSpeed;
+          if (this.x < -10 || this.x > w + 10 || this.y < -10 || this.y > h + 10) this.reset();
+        }
+        draw() {
+          const alpha = this.opacity * (0.5 + 0.5 * Math.sin(this.twinkle));
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(200, 168, 124, ${alpha})`;
+          ctx.fill();
+          if (this.size > 1.5) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(200, 168, 124, ${alpha * 0.15})`;
+            ctx.fill();
+          }
+        }
+      }
+
+      const count = Math.min(80, Math.floor(w * h / 15000));
+      for (let i = 0; i < count; i++) particles.push(new Particle());
+
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+
+    /* ─── Quote Form — mailto ─── */
+    document.getElementById('quote-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const pkg = document.getElementById('package').value;
+      const requests = document.getElementById('requests').value.trim();
+
+      if (!name || !email || !phone || !pkg) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      const subject = encodeURIComponent(`Quote Request — ${pkg}`);
+      const body = encodeURIComponent(
+        `Dear Bella Bohemia,\n\nI would like to request a quote for the following:\n\n` +
+        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPackage: ${pkg}\n\n` +
+        `Special Requests:\n${requests || 'None'}\n\nKind regards,\n${name}`
+      );
+      window.location.href = `mailto:${BOOKING_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    /* ─── PDF Quote Generator ─── */
+    document.getElementById('download-pdf-btn').addEventListener('click', () => {
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const pkg = document.getElementById('package').value;
+      const requests = document.getElementById('requests').value.trim();
+
+      if (!name || !email || !pkg) {
+        alert('Please enter at least your name, email, and package selection to generate a quote.');
+        return;
+      }
+
+      const today = new Date().toLocaleDateString('en-ZA', { year: 'numeric', month: 'long', day: 'numeric' });
+      const quoteRef = 'BB-' + Date.now().toString(36).toUpperCase();
+
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>Bella Bohemia Quotation — ${quoteRef}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; color:#2C2C2C; padding:48px; background:#FAF6F0; }
+  .quote { max-width:700px; margin:0 auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
+  .header { background:linear-gradient(135deg,#2C2C2C,#3D3D3D); color:#FAF6F0; padding:36px 40px; display:flex; justify-content:space-between; align-items:center; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:1.8rem; }
+  .header .ref { font-size:0.8rem; opacity:0.7; margin-top:4px; }
+  .header .date { font-size:0.85rem; text-align:right; opacity:0.8; }
+  .gold-bar { height:4px; background:linear-gradient(90deg,#C8A87C,#A88962); }
+  .body { padding:40px; }
+  .section { margin-bottom:28px; }
+  .section h2 { font-family:'Playfair Display',serif; font-size:1.1rem; color:#A88962; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; }
+  .detail-row { display:flex; padding:10px 0; border-bottom:1px solid #F0E8DC; }
+  .detail-row .label { width:160px; font-weight:600; font-size:0.85rem; color:#A88962; flex-shrink:0; }
+  .detail-row .value { font-size:0.9rem; }
+  .package-box { background:#FAF6F0; border-left:4px solid #C8A87C; padding:20px 24px; border-radius:0 8px 8px 0; margin-top:8px; }
+  .package-box h3 { font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:8px; }
+  .footer-note { margin-top:32px; padding-top:24px; border-top:2px solid #F0E8DC; font-size:0.82rem; color:#888; line-height:1.6; }
+  .footer-note strong { color:#2C2C2C; }
+  .cta { margin-top:24px; text-align:center; font-size:0.9rem; }
+  .cta a { color:#A88962; }
+  @media print { body { padding:0; background:#fff; } .quote { box-shadow:none; } }
+</style>
+</head><body>
+<div class="quote">
+  <div class="header">
+    <div>
+      <h1>Bella Bohemia</h1>
+      <div class="ref">Quotation Ref: ${quoteRef}</div>
+    </div>
+    <div class="date">${today}</div>
+  </div>
+  <div class="gold-bar"></div>
+  <div class="body">
+    <div class="section">
+      <h2>Client Details</h2>
+      <div class="detail-row"><div class="label">Full Name</div><div class="value">${name}</div></div>
+      <div class="detail-row"><div class="label">Email</div><div class="value">${email}</div></div>
+      <div class="detail-row"><div class="label">Phone</div><div class="value">${phone || '—'}</div></div>
+    </div>
+    <div class="section">
+      <h2>Package Selected</h2>
+      <div class="package-box">
+        <h3>${pkg}</h3>
+      </div>
+    </div>
+    ${requests ? `<div class="section"><h2>Special Requests</h2><p style="font-size:0.9rem;line-height:1.7;">${requests.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</p></div>` : ''}
+    <div class="footer-note">
+      <p>This quotation is generated based on the information provided and is subject to availability and confirmation by Bella Bohemia. Final pricing may vary depending on group size, dates, and selected add-ons.</p>
+      <p style="margin-top:12px;"><strong>Contact us:</strong> welcome@bellabohemia.co.za &nbsp;|&nbsp; WhatsApp: +27 72 000 0000</p>
+    </div>
+    <div class="cta">To confirm your booking, please reply to <a href="mailto:welcome@bellabohemia.co.za">welcome@bellabohemia.co.za</a></div>
+  </div>
+</div>
+<script>window.onload=function(){window.print();}<\/script>
+</body></html>`);
+      printWindow.document.close();
+    });
+  </script>
+</body>
+</html>
