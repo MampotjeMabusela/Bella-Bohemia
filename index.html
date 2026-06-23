@@ -3,9 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Bella Bohemia — Luxury spa retreats, tranquil treat days, and friends overnight packages in South Africa.">
   <title>Bella Bohemia | Luxury Spa Retreat</title>
+  <meta name="description" content="Bella Bohemia — Luxury spa retreats, tranquil treat days, and friends overnight packages in South Africa.">
+  <meta name="theme-color" content="#2C2C2C">
 
+  <!-- Open Graph / Social sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bella Bohemia">
+  <meta property="og:title" content="Bella Bohemia | Luxury Spa Retreat">
+  <meta property="og:description" content="Luxury spa retreats, tranquil treat days, and friends overnight packages. Book your escape at Bella Bohemia.">
+  <meta property="og:url" content="https://bellabohemia.vercel.app/">
+  <meta property="og:image" content="https://bellabohemia.vercel.app/images/hero-bg.jpg">
+  <meta property="og:image:alt" content="Bella Bohemia luxury spa retreat">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bella Bohemia | Luxury Spa Retreat">
+  <meta name="twitter:description" content="Luxury spa retreats, tranquil treat days, and friends overnight packages in South Africa.">
+  <meta name="twitter:image" content="https://bellabohemia.vercel.app/images/hero-bg.jpg">
+
+  <link rel="canonical" href="https://bellabohemia.vercel.app/">
   <link rel="preload" as="image" href="images/hero-bg.webp" type="image/webp">
 
   <!-- Google Fonts -->
@@ -1646,69 +1663,57 @@
 
       const today = new Date().toLocaleDateString('en-ZA', { year: 'numeric', month: 'long', day: 'numeric' });
       const quoteRef = 'BB-' + Date.now().toString(36).toUpperCase();
+      const safeRequests = requests ? requests.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+      const requestsBlock = requests
+        ? '<div class="section"><h2>Special Requests</h2><p style="font-size:0.9rem;line-height:1.7;">' + safeRequests + '</p></div>'
+        : '';
 
       const printWindow = window.open('', '_blank');
-      printWindow.document.write(`<!DOCTYPE html>
-<html><head>
-<meta charset="UTF-8">
-<title>Bella Bohemia Quotation — ${quoteRef}</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap');
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Inter',sans-serif; color:#2C2C2C; padding:48px; background:#FAF6F0; }
-  .quote { max-width:700px; margin:0 auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); }
-  .header { background:linear-gradient(135deg,#2C2C2C,#3D3D3D); color:#FAF6F0; padding:36px 40px; display:flex; justify-content:space-between; align-items:center; }
-  .header h1 { font-family:'Playfair Display',serif; font-size:1.8rem; }
-  .header .ref { font-size:0.8rem; opacity:0.7; margin-top:4px; }
-  .header .date { font-size:0.85rem; text-align:right; opacity:0.8; }
-  .gold-bar { height:4px; background:linear-gradient(90deg,#C8A87C,#A88962); }
-  .body { padding:40px; }
-  .section { margin-bottom:28px; }
-  .section h2 { font-family:'Playfair Display',serif; font-size:1.1rem; color:#A88962; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; }
-  .detail-row { display:flex; padding:10px 0; border-bottom:1px solid #F0E8DC; }
-  .detail-row .label { width:160px; font-weight:600; font-size:0.85rem; color:#A88962; flex-shrink:0; }
-  .detail-row .value { font-size:0.9rem; }
-  .package-box { background:#FAF6F0; border-left:4px solid #C8A87C; padding:20px 24px; border-radius:0 8px 8px 0; margin-top:8px; }
-  .package-box h3 { font-family:'Playfair Display',serif; font-size:1.2rem; margin-bottom:8px; }
-  .footer-note { margin-top:32px; padding-top:24px; border-top:2px solid #F0E8DC; font-size:0.82rem; color:#888; line-height:1.6; }
-  .footer-note strong { color:#2C2C2C; }
-  .cta { margin-top:24px; text-align:center; font-size:0.9rem; }
-  .cta a { color:#A88962; }
-  @media print { body { padding:0; background:#fff; } .quote { box-shadow:none; } }
-</style>
-</head><body>
-<div class="quote">
-  <div class="header">
-    <div>
-      <h1>Bella Bohemia</h1>
-      <div class="ref">Quotation Ref: ${quoteRef}</div>
-    </div>
-    <div class="date">${today}</div>
-  </div>
-  <div class="gold-bar"></div>
-  <div class="body">
-    <div class="section">
-      <h2>Client Details</h2>
-      <div class="detail-row"><div class="label">Full Name</div><div class="value">${name}</div></div>
-      <div class="detail-row"><div class="label">Email</div><div class="value">${email}</div></div>
-      <div class="detail-row"><div class="label">Phone</div><div class="value">${phone || '—'}</div></div>
-    </div>
-    <div class="section">
-      <h2>Package Selected</h2>
-      <div class="package-box">
-        <h3>${pkg}</h3>
-      </div>
-    </div>
-    ${requests ? `<div class="section"><h2>Special Requests</h2><p style="font-size:0.9rem;line-height:1.7;">${requests.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</p></div>` : ''}
-    <div class="footer-note">
-      <p>This quotation is generated based on the information provided and is subject to availability and confirmation by Bella Bohemia. Final pricing may vary depending on group size, dates, and selected add-ons.</p>
-      <p style="margin-top:12px;"><strong>Contact us:</strong> welcome@bellabohemia.co.za &nbsp;|&nbsp; WhatsApp: +27 72 000 0000</p>
-    </div>
-    <div class="cta">To confirm your booking, please reply to <a href="mailto:welcome@bellabohemia.co.za">welcome@bellabohemia.co.za</a></div>
-  </div>
-</div>
-<script>window.onload=function(){window.print();}<\/script>
-</body></html>`);
+      const quoteHtml = [
+        '<!DOCTYPE html><html><head><meta charset="UTF-8">',
+        '<title>Bella Bohemia Quotation \u2014 ', quoteRef, '<', '/title>',
+        '<style>',
+        '@import url(\'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap\');',
+        '* { margin:0; padding:0; box-sizing:border-box; }',
+        'body { font-family:\'Inter\',sans-serif; color:#2C2C2C; padding:48px; background:#FAF6F0; }',
+        '.quote { max-width:700px; margin:0 auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,0.08); }',
+        '.header { background:linear-gradient(135deg,#2C2C2C,#3D3D3D); color:#FAF6F0; padding:36px 40px; display:flex; justify-content:space-between; align-items:center; }',
+        '.header h1 { font-family:\'Playfair Display\',serif; font-size:1.8rem; }',
+        '.header .ref { font-size:0.8rem; opacity:0.7; margin-top:4px; }',
+        '.header .date { font-size:0.85rem; text-align:right; opacity:0.8; }',
+        '.gold-bar { height:4px; background:linear-gradient(90deg,#C8A87C,#A88962); }',
+        '.body { padding:40px; }',
+        '.section { margin-bottom:28px; }',
+        '.section h2 { font-family:\'Playfair Display\',serif; font-size:1.1rem; color:#A88962; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; }',
+        '.detail-row { display:flex; padding:10px 0; border-bottom:1px solid #F0E8DC; }',
+        '.detail-row .label { width:160px; font-weight:600; font-size:0.85rem; color:#A88962; flex-shrink:0; }',
+        '.detail-row .value { font-size:0.9rem; }',
+        '.package-box { background:#FAF6F0; border-left:4px solid #C8A87C; padding:20px 24px; border-radius:0 8px 8px 0; margin-top:8px; }',
+        '.package-box h3 { font-family:\'Playfair Display\',serif; font-size:1.2rem; margin-bottom:8px; }',
+        '.footer-note { margin-top:32px; padding-top:24px; border-top:2px solid #F0E8DC; font-size:0.82rem; color:#888; line-height:1.6; }',
+        '.footer-note strong { color:#2C2C2C; }',
+        '.cta { margin-top:24px; text-align:center; font-size:0.9rem; }',
+        '.cta a { color:#A88962; }',
+        '@media print { body { padding:0; background:#fff; } .quote { box-shadow:none; } }',
+        '<', '/style><', '/head><body>',
+        '<div class="quote"><div class="header"><div>',
+        '<h1>Bella Bohemia</h1><div class="ref">Quotation Ref: ', quoteRef, '</div></div>',
+        '<div class="date">', today, '</div></div><div class="gold-bar"></div><div class="body">',
+        '<div class="section"><h2>Client Details</h2>',
+        '<div class="detail-row"><div class="label">Full Name</div><div class="value">', name, '</div></div>',
+        '<div class="detail-row"><div class="label">Email</div><div class="value">', email, '</div></div>',
+        '<div class="detail-row"><div class="label">Phone</div><div class="value">', phone || '\u2014', '</div></div></div>',
+        '<div class="section"><h2>Package Selected</h2><div class="package-box"><h3>', pkg, '</h3></div></div>',
+        requestsBlock,
+        '<div class="footer-note"><p>This quotation is generated based on the information provided and is subject to availability and confirmation by Bella Bohemia. Final pricing may vary depending on group size, dates, and selected add-ons.</p>',
+        '<p style="margin-top:12px;"><strong>Contact us:</strong> welcome@bellabohemia.co.za &nbsp;|&nbsp; WhatsApp: +27 72 000 0000</p></div>',
+        '<div class="cta">To confirm your booking, please reply to <a href="mailto:welcome@bellabohemia.co.za">welcome@bellabohemia.co.za</a></div>',
+        '</div></div>',
+        '<script>window.onload=function(){window.print();}<', '/script>',
+        '<', '/body><', '/html>'
+      ].join('');
+
+      printWindow.document.write(quoteHtml);
       printWindow.document.close();
     });
   </script>
