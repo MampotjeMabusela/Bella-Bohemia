@@ -233,6 +233,13 @@
     }
     .nav-desktop a:hover { color: var(--gold); }
     .nav-desktop a:hover::after { width: 100%; }
+    .nav-desktop a.active { color: var(--gold); }
+    .nav-desktop a.active::after { width: 100%; }
+    .btn-header-book {
+      padding: 10px 22px;
+      min-height: 42px;
+      font-size: 0.75rem;
+    }
 
     .hamburger {
       display: none;
@@ -291,8 +298,455 @@
       align-items: center;
     }
     .nav-mobile a:hover { color: var(--gold-dark); }
+    .nav-mobile a.active { color: var(--gold-dark); }
 
-    /* ─── Buttons ─── */
+    /* ─── Accessibility ─── */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      z-index: 10000;
+      padding: 12px 20px;
+      background: var(--gold);
+      color: var(--charcoal);
+      font-weight: 600;
+      font-size: 0.85rem;
+      border-radius: 0 0 8px 8px;
+      transition: top var(--transition);
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* ─── Scroll cue ─── */
+    .scroll-cue {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(250, 246, 240, 0.65);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+      animation: scroll-bounce 2s ease-in-out infinite;
+    }
+    .scroll-cue:hover { color: var(--gold); }
+    @keyframes scroll-bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── Sticky WhatsApp FAB ─── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      right: max(20px, env(safe-area-inset-right));
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      background: #25D366;
+      color: var(--white);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.45);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: all var(--transition);
+    }
+    .whatsapp-fab i { font-size: 1.25rem; }
+    .whatsapp-fab:hover {
+      background: #1ebe57;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(37, 211, 102, 0.5);
+    }
+    .whatsapp-fab span { display: none; }
+    @media (min-width: 480px) {
+      .whatsapp-fab span { display: inline; }
+      .scroll-cue { display: none; }
+    }
+
+    /* ─── How It Works ─── */
+    .how-section {
+      padding: clamp(60px, 10vw, 90px) 0;
+      background: var(--white);
+      position: relative;
+      z-index: 2;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: clamp(24px, 4vw, 40px);
+      margin-top: 48px;
+    }
+    .step-card {
+      text-align: center;
+      padding: 32px 24px;
+      background: var(--cream);
+      border-radius: var(--radius);
+      border: 1px solid rgba(200, 168, 124, 0.15);
+      transition: all var(--transition);
+    }
+    .step-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: var(--charcoal);
+    }
+    .step-card p {
+      font-size: 0.9rem;
+      color: var(--charcoal-light);
+    }
+
+    /* ─── Package tags & compare ─── */
+    .package-card { position: relative; }
+    .package-tags {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+    }
+    .package-tag {
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .package-tag-popular { background: var(--gold); color: var(--charcoal); }
+    .package-tag-quick { background: var(--sage); color: var(--white); }
+    .package-tag-days { background: var(--charcoal); color: var(--cream); }
+    .best-for {
+      font-size: 0.82rem;
+      color: var(--gold-dark);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .compare-table-wrap {
+      margin-top: 48px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      min-width: 320px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 14px 18px;
+      text-align: center;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: 0.9rem;
+    }
+    .compare-table th {
+      background: var(--charcoal);
+      color: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    .compare-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .compare-table .yes { color: var(--sage-dark); font-weight: 600; }
+
+    /* ─── Group calculator ─── */
+    .group-calculator {
+      margin-top: 32px;
+      padding: 28px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(138, 154, 123, 0.2);
+    }
+    .group-calculator h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: var(--sage-dark);
+    }
+    .group-calculator label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal-light);
+      margin-bottom: 12px;
+    }
+    .group-calculator input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .calc-output {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(138, 154, 123, 0.15);
+    }
+    .calc-output .friends-count {
+      font-size: 1.1rem;
+      color: var(--charcoal);
+    }
+    .calc-output .friends-count strong {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-dark);
+      font-size: 1.4rem;
+    }
+    .calc-output .total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+    .calc-output .per-person {
+      font-size: 0.8rem;
+      color: var(--charcoal-light);
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+    }
+
+    /* ─── Testimonials ─── */
+    .testimonials-section {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+      position: relative;
+      z-index: 2;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      padding: 32px 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--gold);
+      position: relative;
+    }
+    .testimonial-card .stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      color: var(--charcoal-light);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .testimonial-card cite {
+      font-style: normal;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .testimonial-card cite span {
+      display: block;
+      font-weight: 400;
+      color: var(--charcoal-light);
+      font-size: 0.75rem;
+      margin-top: 2px;
+    }
+    .rating-banner {
+      text-align: center;
+      margin-top: 36px;
+      padding: 16px;
+      background: rgba(200, 168, 124, 0.12);
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      color: var(--charcoal-light);
+    }
+    .rating-banner strong { color: var(--gold-dark); }
+
+    /* ─── Visit Us ─── */
+    .visit-section {
+      padding: clamp(60px, 10vw, 90px) 0;
+      background: var(--charcoal);
+      color: var(--cream);
+      position: relative;
+      z-index: 2;
+    }
+    .visit-section .section-label { color: var(--gold); }
+    .visit-section h2 { color: var(--cream); }
+    .visit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .visit-card {
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(200, 168, 124, 0.15);
+      text-align: center;
+    }
+    .visit-card i {
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .visit-card h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .visit-card p {
+      font-size: 0.92rem;
+      color: rgba(250, 246, 240, 0.8);
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      padding: clamp(60px, 10vw, 100px) 0;
+      background: var(--white);
+      position: relative;
+      z-index: 2;
+    }
+    .faq-list {
+      max-width: 760px;
+      margin: 48px auto 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .faq-item summary {
+      padding: 20px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      transition: transform var(--transition);
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item p {
+      padding: 0 0 20px;
+      font-size: 0.92rem;
+      color: var(--charcoal-light);
+      line-height: 1.7;
+    }
+    .faq-item a { color: var(--gold-dark); text-decoration: underline; }
+
+    /* ─── Gallery links ─── */
+    a.gallery-circle {
+      display: block;
+      cursor: pointer;
+    }
+
+    /* ─── Form UX ─── */
+    .form-group label .optional {
+      font-weight: 400;
+      color: var(--charcoal-light);
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 0.75rem;
+    }
+    .form-error {
+      display: none;
+      font-size: 0.78rem;
+      color: #c0392b;
+      margin-top: 6px;
+    }
+    .form-group.invalid input,
+    .form-group.invalid select,
+    .form-group.invalid textarea {
+      border-color: #c0392b;
+    }
+    .form-group.invalid .form-error { display: block; }
+
+    /* ─── Toast notification ─── */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      z-index: 10001;
+      padding: 16px 28px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(200, 168, 124, 0.3);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -486,8 +940,8 @@
     }
     .hero .section-overlay {
       background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.62) 0%, rgba(44, 44, 44, 0.55) 40%, rgba(0, 0, 0, 0.7) 100%),
-        radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.35) 100%);
+        linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(44, 44, 44, 0.65) 40%, rgba(0, 0, 0, 0.78) 100%),
+        radial-gradient(ellipse at center, transparent 20%, rgba(0, 0, 0, 0.45) 100%);
     }
     .hero-content { max-width: 720px; position: relative; z-index: 2; }
     .hero-logo-wrap {
@@ -546,6 +1000,15 @@
       width: 100%;
       max-width: 480px;
       margin: 0 auto;
+    }
+    .hero .btn-outline {
+      border-color: rgba(250, 246, 240, 0.5);
+      color: var(--cream);
+    }
+    .hero .btn-outline:hover {
+      background: var(--cream);
+      color: var(--charcoal);
+      border-color: var(--cream);
     }
 
     .hero-divider {
@@ -1177,7 +1640,8 @@
   </style>
 </head>
 <body>
-
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <!-- Particle Canvas -->
   <canvas id="particles-canvas"></canvas>
 
@@ -1198,10 +1662,13 @@
         <span class="logo-mark"><img src="logo.png" alt="Bella Bohemia Logo"></span>
       </a>
       <nav class="nav-desktop">
-        <a href="#home">Home</a>
-        <a href="#packages">Packages</a>
-        <a href="#overnight">Overnight</a>
-        <a href="#quote">Get Quote</a>
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#how-it-works" data-nav="how-it-works">How It Works</a>
+        <a href="#packages" data-nav="packages">Packages</a>
+        <a href="#overnight" data-nav="overnight">Overnight</a>
+        <a href="#faq" data-nav="faq">FAQ</a>
+        <a href="#quote" data-nav="quote">Get Quote</a>
+        <a href="#" class="btn btn-whatsapp btn-header-book" data-whatsapp data-message="Hi Bella Bohemia! I'd like to book a spa experience.">Book</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -1211,12 +1678,16 @@
 
   <!-- Mobile Nav -->
   <nav class="nav-mobile" id="nav-mobile">
-    <a href="#home" class="mobile-link">Home</a>
-    <a href="#packages" class="mobile-link">Packages</a>
-    <a href="#overnight" class="mobile-link">Overnight</a>
-    <a href="#quote" class="mobile-link">Get Quote</a>
+    <a href="#home" class="mobile-link" data-nav="home">Home</a>
+    <a href="#how-it-works" class="mobile-link" data-nav="how-it-works">How It Works</a>
+    <a href="#packages" class="mobile-link" data-nav="packages">Packages</a>
+    <a href="#overnight" class="mobile-link" data-nav="overnight">Overnight</a>
+    <a href="#faq" class="mobile-link" data-nav="faq">FAQ</a>
+    <a href="#quote" class="mobile-link" data-nav="quote">Get Quote</a>
+    <a href="#" class="btn btn-whatsapp mobile-link" data-whatsapp data-message="Hi Bella Bohemia! I'd like to book a spa experience."><i class="fab fa-whatsapp"></i> Book on WhatsApp</a>
   </nav>
 
+  <main id="main-content">
   <!-- Hero -->
   <section class="hero" id="home">
     <div class="section-bg-layer parallax" aria-hidden="true"></div>
@@ -1236,44 +1707,76 @@
       <h1 class="fade-in-up delay-2">Where <em>Tranquility</em> Meets Bohemian Elegance</h1>
       <p class="fade-in-up delay-2">Escape to Bella Bohemia — an oasis of restorative treatments, soulful hospitality, and unforgettable overnight retreats crafted for you and your closest friends.</p>
       <div class="hero-cta fade-in-up delay-3">
-        <a href="#packages" class="btn btn-primary">Explore Packages</a>
-        <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi Bella Bohemia! I'd love to learn more about your spa packages.">
-          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi Bella Bohemia! I'm interested in booking a spa day or overnight stay. Could you help me with availability?">
+          <i class="fab fa-whatsapp"></i> Book on WhatsApp
         </a>
+        <a href="#packages" class="btn btn-outline">View Packages</a>
       </div>
     </div>
+    <a href="#how-it-works" class="scroll-cue" aria-label="Scroll to explore">
+      <span>Explore</span>
+      <i class="fas fa-chevron-down"></i>
+    </a>
   </section>
 
   <!-- Visual Gallery Strip -->
   <section class="gallery-strip" aria-label="Spa atmosphere gallery">
     <div class="container">
       <div class="gallery-circles fade-in-up">
-        <div class="gallery-circle">
+        <a href="#packages" class="gallery-circle" aria-label="View massage packages">
           <picture>
             <source srcset="images/gallery-massage.webp" type="image/webp">
             <img src="images/gallery-massage.jpg" alt="Relaxing head massage treatment" loading="lazy" width="220" height="220">
           </picture>
-        </div>
-        <div class="gallery-circle">
+        </a>
+        <a href="#packages" class="gallery-circle" aria-label="View tranquil treat packages">
           <picture>
             <source srcset="images/gallery-zen.webp" type="image/webp">
             <img src="images/gallery-zen.jpg" alt="Zen stones, orchid and candlelit tranquility" loading="lazy" width="220" height="220">
           </picture>
-        </div>
-        <div class="gallery-circle">
+        </a>
+        <a href="#overnight" class="gallery-circle" aria-label="View overnight package">
           <picture>
             <source srcset="images/gallery-lavender.webp" type="image/webp">
             <img src="images/gallery-lavender.jpg" alt="Lavender aromatherapy massage table" loading="lazy" width="220" height="220">
           </picture>
-        </div>
-        <div class="gallery-circle">
+        </a>
+        <a href="#quote" class="gallery-circle" aria-label="Get a quote">
           <picture>
             <source srcset="images/gallery-candles.webp" type="image/webp">
             <img src="images/gallery-candles.jpg" alt="Warm candlelit spa ambiance" loading="lazy" width="220" height="220">
           </picture>
-        </div>
+        </a>
       </div>
       <p class="gallery-caption fade-in-up delay-1">A glimpse into the Bella Bohemia experience</p>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Simple &amp; Seamless</span>
+        <h2>How Booking Works</h2>
+        <p>Your path to tranquillity in three easy steps — no complicated forms, just personal service.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card fade-in-up delay-1">
+          <div class="step-num">1</div>
+          <h3>Choose Your Package</h3>
+          <p>Browse our Tranquil Treat Days or Friends Overnight retreat and pick what suits you.</p>
+        </div>
+        <div class="step-card fade-in-up delay-2">
+          <div class="step-num">2</div>
+          <h3>Message Us on WhatsApp</h3>
+          <p>Tap Book and we'll confirm your date, group size, and any special requests.</p>
+        </div>
+        <div class="step-card fade-in-up delay-3">
+          <div class="step-num">3</div>
+          <h3>Arrive &amp; Unwind</h3>
+          <p>Check in, sip your welcome drink, and let us take care of the rest.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1294,8 +1797,13 @@
       <div class="packages-grid">
         <!-- 90 MIN -->
         <div class="package-card fade-in-up delay-1">
+          <div class="package-tags">
+            <span class="package-tag package-tag-popular">Most Popular</span>
+            <span class="package-tag package-tag-days">Mon – Thu</span>
+          </div>
           <div class="package-duration"><i class="far fa-clock"></i> 90 MIN COMBO</div>
           <h3>Ultimate Relaxation</h3>
+          <p class="best-for">Best for full relaxation &amp; couples</p>
           <div class="price-pills">
             <div class="price-pill"><span>R500</span> per guest</div>
             <div class="price-pill"><span>R950</span> per couple</div>
@@ -1308,15 +1816,20 @@
               <li>Foot &amp; Calf Massage</li>
             </ul>
           </div>
-          <a href="#" class="btn btn-primary" data-whatsapp data-message="Hi! I'd like to book the 90 MIN COMBO Spa Tranquil Treat Day (R500 per guest / R950 per couple).">
-            <i class="fab fa-whatsapp"></i> Book Now
+          <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi Bella Bohemia! I'd like to book the 90 MIN COMBO Spa Tranquil Treat Day (R500 per guest / R950 per couple). Please let me know your available dates.">
+            <i class="fab fa-whatsapp"></i> Book on WhatsApp
           </a>
         </div>
 
         <!-- 60 MIN -->
         <div class="package-card fade-in-up delay-2">
+          <div class="package-tags">
+            <span class="package-tag package-tag-quick">Quick Escape</span>
+            <span class="package-tag package-tag-days">Mon – Thu</span>
+          </div>
           <div class="package-duration"><i class="far fa-clock"></i> 60 MIN COMBO</div>
           <h3>Essential Bliss</h3>
+          <p class="best-for">Best for a lunchtime treat or first visit</p>
           <div class="price-pills">
             <div class="price-pill"><span>R400</span> per guest</div>
             <div class="price-pill"><span>R750</span> per couple</div>
@@ -1329,10 +1842,30 @@
               <li>Foot &amp; Calf Massage</li>
             </ul>
           </div>
-          <a href="#" class="btn btn-primary" data-whatsapp data-message="Hi! I'd like to book the 60 MIN COMBO Spa Tranquil Treat Day (R400 per guest / R750 per couple).">
-            <i class="fab fa-whatsapp"></i> Book Now
+          <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi Bella Bohemia! I'd like to book the 60 MIN COMBO Spa Tranquil Treat Day (R400 per guest / R750 per couple). Please let me know your available dates.">
+            <i class="fab fa-whatsapp"></i> Book on WhatsApp
           </a>
         </div>
+      </div>
+
+      <div class="compare-table-wrap fade-in-up delay-3">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>What's included</th>
+              <th>60 min</th>
+              <th>90 min</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Welcome drink</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Full body massage</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Foot &amp; calf massage</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+            <tr><td>Treatment duration</td><td>60 min</td><td>90 min</td></tr>
+            <tr><td>Price per guest</td><td>R400</td><td>R500</td></tr>
+            <tr><td>Price per couple</td><td>R750</td><td>R950</td></tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="special-banner fade-in-up delay-3">
@@ -1403,10 +1936,122 @@
         </div>
       </div>
 
-      <div class="overnight-cta fade-in-up delay-3">
-        <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi! I'm interested in the Friends Overnight Spa Package. Could you help me with availability and pricing for my group?">
-          <i class="fab fa-whatsapp"></i> Book Overnight Package
+      <div class="group-calculator fade-in-up delay-3">
+        <h4><i class="fas fa-calculator"></i> Estimate Your Group Total</h4>
+        <label for="groupSize">How many friends? <strong id="groupSizeLabel">4</strong></label>
+        <input type="range" id="groupSize" min="1" max="12" value="4" aria-label="Number of friends">
+        <div class="calc-output">
+          <div class="friends-count"><strong id="calcFriends">4</strong> friends × <span id="calcPerPerson">R1,600</span> <span class="per-person">per person</span></div>
+          <div class="total-price" id="calcTotal">R6,400</div>
+        </div>
+        <a href="#" class="btn btn-whatsapp" id="calcWhatsApp" style="margin-top:20px;width:100%;" data-whatsapp data-message="Hi Bella Bohemia! I'm interested in the Friends Overnight Spa Package for 4 friends. Could you help with availability?">
+          <i class="fab fa-whatsapp"></i> Book This Group on WhatsApp
         </a>
+      </div>
+
+      <div class="overnight-cta fade-in-up delay-3">
+        <a href="#" class="btn btn-whatsapp" data-whatsapp data-message="Hi Bella Bohemia! I'm interested in the Friends Overnight Spa Package. Could you help me with availability and pricing for my group?">
+          <i class="fab fa-whatsapp"></i> Book on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Guest Love</span>
+        <h2>What Our Guests Say</h2>
+        <p>Real experiences from friends who've unwound with us.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-in-up delay-1">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The perfect girls' weekend — dinner, massage, and the most restful sleep. We didn't want to leave!"</blockquote>
+          <cite>Thandi M.<span>Birthday retreat, 6 friends</span></cite>
+        </div>
+        <div class="testimonial-card fade-in-up delay-2">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The 90-minute combo is incredible value. Welcome drink, full body and foot massage — pure bliss on a Thursday afternoon."</blockquote>
+          <cite>Sarah &amp; Lisa<span>Couples Tranquil Treat Day</span></cite>
+        </div>
+        <div class="testimonial-card fade-in-up delay-3">
+          <div class="stars">★★★★★</div>
+          <blockquote>"We booked for 10 friends and everything was seamless. Bella Bohemia made our reunion feel so special."</blockquote>
+          <cite>Nomsa K.<span>Group overnight, 10 friends</span></cite>
+        </div>
+      </div>
+      <p class="rating-banner fade-in-up">Loved by guests across South Africa — <strong>5★ experiences</strong> since Est. 2018</p>
+    </div>
+  </section>
+
+  <!-- Visit Us -->
+  <section class="visit-section" id="visit">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Plan Your Visit</span>
+        <h2>Visit Bella Bohemia</h2>
+        <p>Everything you need to know before you arrive.</p>
+      </div>
+      <div class="visit-grid">
+        <div class="visit-card fade-in-up delay-1">
+          <i class="fas fa-map-marker-alt"></i>
+          <h4>Location</h4>
+          <p>South Africa — contact us for directions and address details when you book.</p>
+        </div>
+        <div class="visit-card fade-in-up delay-2">
+          <i class="far fa-clock"></i>
+          <h4>Day Packages</h4>
+          <p>Spa Tranquil Treat Days available <strong>Monday – Thursday</strong>. Book via WhatsApp.</p>
+        </div>
+        <div class="visit-card fade-in-up delay-3">
+          <i class="fas fa-bed"></i>
+          <h4>Overnight Stay</h4>
+          <p>Check-in <strong>14:00</strong> · Check-out <strong>10:00</strong> the following day.</p>
+        </div>
+        <div class="visit-card fade-in-up delay-4">
+          <i class="fas fa-parking"></i>
+          <h4>Arrival</h4>
+          <p>Free on-site parking available. Please advise of dietary requirements when booking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <span class="section-label">Questions</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers before you book your escape.</p>
+      </div>
+      <div class="faq-list fade-in-up delay-1">
+        <details class="faq-item">
+          <summary>What should I wear or bring?</summary>
+          <p>Wear comfortable clothing. We provide towels and robes for treatments. For overnight stays, bring an overnight bag and any personal items you need. Leave jewellery at home if possible.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Are Tranquil Treat Days only Monday – Thursday?</summary>
+          <p>Yes, the 60 min and 90 min combo packages are a Monday – Thursday special. Message us on WhatsApp to check availability for your preferred date.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I add hot stones to my massage?</summary>
+          <p>Yes! Hot stone add-on is available for the overnight package at R100 per person. Mention it when you book.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is it suitable if I'm pregnant or have allergies?</summary>
+          <p>Please tell us about any medical conditions, allergies, or pregnancy when booking. We'll tailor your treatment or advise if rescheduling is needed for your safety.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is your cancellation policy?</summary>
+          <p>Cancellations more than 7 days before arrival receive a full refund. See our full policy on the <a href="terms.html">Terms &amp; Conditions</a> page.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do I book?</summary>
+          <p>The fastest way is WhatsApp — tap any "Book on WhatsApp" button, or fill in the quote form and send your details. We typically respond within a few hours.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -1447,21 +2092,24 @@
         </div>
 
         <div class="quote-form-wrap fade-in-up delay-2">
-          <h3>Request a Quote</h3>
+          <h3>Get a Quote</h3>
           <form id="quote-form" novalidate>
-            <div class="form-group">
+            <div class="form-group" id="fg-fullName">
               <label for="fullName">Full Name</label>
               <input type="text" id="fullName" name="fullName" placeholder="Your full name" required>
+              <span class="form-error">Please enter your full name.</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="fg-email">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              <span class="form-error">Please enter a valid email address.</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="fg-phone">
               <label for="phone">Phone</label>
               <input type="tel" id="phone" name="phone" placeholder="+27 ..." required>
+              <span class="form-error">Please enter your phone number.</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="fg-package">
               <label for="package">Package Interest</label>
               <select id="package" name="package" required>
                 <option value="" disabled selected>Select a package</option>
@@ -1473,14 +2121,18 @@
                 <option value="Friends Overnight Spa Package (9–12 friends: R1,400 pp)">Friends Overnight — 9–12 friends (R1,400 pp)</option>
                 <option value="Custom / Other">Custom / Other</option>
               </select>
+              <span class="form-error">Please select a package.</span>
             </div>
-            <div class="form-group">
-              <label for="requests">Special Requests</label>
+            <div class="form-group" id="fg-requests">
+              <label for="requests">Special Requests <span class="optional">(optional)</span></label>
               <textarea id="requests" name="requests" placeholder="Dates, group size, add-ons, dietary requirements..."></textarea>
             </div>
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary">
-                <i class="fas fa-paper-plane"></i> Send via Email
+              <button type="button" class="btn btn-whatsapp" id="quote-whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Send on WhatsApp
+              </button>
+              <button type="submit" class="btn btn-outline" id="quote-email-btn">
+                <i class="fas fa-envelope"></i> Send via Email
               </button>
               <button type="button" class="btn btn-outline" id="download-pdf-btn">
                 <i class="fas fa-file-pdf"></i> Download PDF Quote
@@ -1491,6 +2143,14 @@
       </div>
     </div>
   </section>
+
+  </main>
+
+  <!-- Sticky WhatsApp -->
+  <a href="#" class="whatsapp-fab" data-whatsapp data-message="Hi Bella Bohemia! I'd like to book a spa experience." aria-label="Book on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span>Book on WhatsApp</span>
+  </a>
 
   <!-- Footer -->
   <footer class="footer">
@@ -1503,10 +2163,12 @@
         <div>
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html#home">Home</a></li>
-            <li><a href="index.html#packages">Packages</a></li>
-            <li><a href="index.html#overnight">Overnight</a></li>
-            <li><a href="index.html#quote">Get Quote</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#overnight">Overnight</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#quote">Get Quote</a></li>
             <li><a href="terms.html">Terms &amp; Conditions</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
           </ul>
@@ -1539,12 +2201,113 @@
     const BOOKING_EMAIL = 'welcome@bellabohemia.co.za';
 
     /* ─── WhatsApp Links ─── */
-    document.querySelectorAll('[data-whatsapp]').forEach(el => {
-      el.addEventListener('click', e => {
-        e.preventDefault();
-        const msg = el.dataset.message || 'Hi Bella Bohemia!';
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    function openWhatsApp(msg) {
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+    function bindWhatsApp() {
+      document.querySelectorAll('[data-whatsapp]').forEach(el => {
+        if (el._waBound) return;
+        el._waBound = true;
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          openWhatsApp(el.dataset.message || 'Hi Bella Bohemia!');
+        });
       });
+    }
+    bindWhatsApp();
+
+    /* ─── Toast ─── */
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    /* ─── Active nav on scroll ─── */
+    const navSections = ['home', 'how-it-works', 'packages', 'overnight', 'faq', 'quote'];
+    const navLinks = document.querySelectorAll('[data-nav]');
+    const sectionEls = navSections.map(id => document.getElementById(id)).filter(Boolean);
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.nav === id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    sectionEls.forEach(el => navObserver.observe(el));
+
+    /* ─── Group price calculator ─── */
+    function getPricePerPerson(n) {
+      if (n <= 2) return 1700;
+      if (n <= 5) return 1600;
+      if (n <= 8) return 1500;
+      return 1400;
+    }
+    function formatRand(n) {
+      return 'R' + n.toLocaleString('en-ZA');
+    }
+    const groupSlider = document.getElementById('groupSize');
+    const calcWhatsApp = document.getElementById('calcWhatsApp');
+    function updateGroupCalc() {
+      if (!groupSlider || !calcWhatsApp) return;
+      const n = parseInt(groupSlider.value, 10);
+      const pp = getPricePerPerson(n);
+      const total = n * pp;
+      document.getElementById('groupSizeLabel').textContent = n;
+      document.getElementById('calcFriends').textContent = n;
+      document.getElementById('calcPerPerson').textContent = formatRand(pp);
+      document.getElementById('calcTotal').textContent = formatRand(total);
+      calcWhatsApp.dataset.message = `Hi Bella Bohemia! I'm interested in the Friends Overnight Spa Package for ${n} friend${n > 1 ? 's' : ''} (estimated ${formatRand(total)} total). Could you help with availability?`;
+    }
+    if (groupSlider) {
+      groupSlider.addEventListener('input', updateGroupCalc);
+      updateGroupCalc();
+    }
+
+    /* ─── Form validation ─── */
+    function getFormData() {
+      return {
+        name: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: document.getElementById('phone').value.trim(),
+        pkg: document.getElementById('package').value,
+        requests: document.getElementById('requests').value.trim()
+      };
+    }
+    function validateForm() {
+      const d = getFormData();
+      let valid = true;
+      const checks = [
+        { id: 'fg-fullName', ok: d.name.length > 0 },
+        { id: 'fg-email', ok: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) },
+        { id: 'fg-phone', ok: d.phone.length > 0 },
+        { id: 'fg-package', ok: !!d.pkg }
+      ];
+      checks.forEach(({ id, ok }) => {
+        const el = document.getElementById(id);
+        el.classList.toggle('invalid', !ok);
+        if (!ok) valid = false;
+      });
+      return valid ? d : null;
+    }
+    ['fullName', 'email', 'phone', 'package'].forEach(fid => {
+      const el = document.getElementById(fid);
+      if (el) el.addEventListener('input', () => {
+        const fg = document.getElementById('fg-' + fid);
+        if (fg) fg.classList.remove('invalid');
+      });
+    });
+
+    document.getElementById('quote-whatsapp-btn').addEventListener('click', () => {
+      const d = validateForm();
+      if (!d) return;
+      const msg = `Hi Bella Bohemia! I'd like a quote for:\n\nName: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nPackage: ${d.pkg}\n\nSpecial requests: ${d.requests || 'None'}`;
+      openWhatsApp(msg);
+      showToast('Opening WhatsApp — we\'ll reply shortly!');
     });
 
     /* ─── Header Scroll Effect ─── */
@@ -1586,9 +2349,10 @@
       setTimeout(() => el.classList.add('visible'), 200);
     });
 
-    /* ─── Gold Particle System ─── */
-    (function initParticles() {
+    /* ─── Gold Particle System (deferred) ─── */
+    function initParticles() {
       const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let particles = [];
       let w, h;
@@ -1624,18 +2388,12 @@
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(200, 168, 124, ${alpha})`;
           ctx.fill();
-          if (this.size > 1.5) {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(200, 168, 124, ${alpha * 0.15})`;
-            ctx.fill();
-          }
         }
       }
 
       const isMobile = window.innerWidth < 768;
-      const maxParticles = isMobile ? 35 : 80;
-      const count = Math.min(maxParticles, Math.floor(w * h / (isMobile ? 25000 : 15000)));
+      const maxParticles = isMobile ? 25 : 70;
+      const count = Math.min(maxParticles, Math.floor(w * h / (isMobile ? 30000 : 15000)));
       for (let i = 0; i < count; i++) particles.push(new Particle());
 
       function animate() {
@@ -1644,43 +2402,41 @@
         requestAnimationFrame(animate);
       }
       animate();
-    })();
+    }
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      requestAnimationFrame(() => setTimeout(initParticles, 300));
+    }
 
-    /* ─── Quote Form — mailto ─── */
+    /* ─── Quote Form — email ─── */
     document.getElementById('quote-form').addEventListener('submit', e => {
       e.preventDefault();
-      const name = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const pkg = document.getElementById('package').value;
-      const requests = document.getElementById('requests').value.trim();
+      const d = validateForm();
+      if (!d) return;
 
-      if (!name || !email || !phone || !pkg) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-
-      const subject = encodeURIComponent(`Quote Request — ${pkg}`);
+      const subject = encodeURIComponent(`Quote Request — ${d.pkg}`);
       const body = encodeURIComponent(
         `Dear Bella Bohemia,\n\nI would like to request a quote for the following:\n\n` +
-        `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPackage: ${pkg}\n\n` +
-        `Special Requests:\n${requests || 'None'}\n\nKind regards,\n${name}`
+        `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nPackage: ${d.pkg}\n\n` +
+        `Special Requests:\n${d.requests || 'None'}\n\nKind regards,\n${d.name}`
       );
       window.location.href = `mailto:${BOOKING_EMAIL}?subject=${subject}&body=${body}`;
+      showToast('Opening your email app — we\'ll respond shortly!');
     });
 
     /* ─── PDF Quote Generator ─── */
     document.getElementById('download-pdf-btn').addEventListener('click', () => {
-      const name = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const pkg = document.getElementById('package').value;
-      const requests = document.getElementById('requests').value.trim();
-
-      if (!name || !email || !pkg) {
-        alert('Please enter at least your name, email, and package selection to generate a quote.');
+      const d = getFormData();
+      if (!d.name || !d.email || !d.pkg) {
+        if (!d.name) document.getElementById('fg-fullName').classList.add('invalid');
+        if (!d.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) document.getElementById('fg-email').classList.add('invalid');
+        if (!d.pkg) document.getElementById('fg-package').classList.add('invalid');
         return;
       }
+      const name = d.name;
+      const email = d.email;
+      const phone = d.phone;
+      const pkg = d.pkg;
+      const requests = d.requests;
 
       const today = new Date().toLocaleDateString('en-ZA', { year: 'numeric', month: 'long', day: 'numeric' });
       const quoteRef = 'BB-' + Date.now().toString(36).toUpperCase();
@@ -1736,6 +2492,7 @@
 
       printWindow.document.write(quoteHtml);
       printWindow.document.close();
+      showToast('Quote ready — use Print to save as PDF.');
     });
   </script>
 </body>
